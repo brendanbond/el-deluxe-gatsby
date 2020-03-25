@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "albums",
+  "info": {
+    "name": "Album"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Artist": {
+      "type": "string"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "Credits": {
+      "type": "string"
+    },
+    "Quote": {
+      "type": "string"
+    },
+    "Attribution": {
+      "type": "string"
+    },
+    "Label": {
+      "type": "string"
+    },
+    "Cover": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}
