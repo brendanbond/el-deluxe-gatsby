@@ -1,43 +1,40 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
-import "./layout.css";
+import styled, { createGlobalStyle } from "styled-components";
+
+import { ProductsProvider } from "../hooks/useProductContext";
+import { CartProvider } from "../hooks/useCartContext";
+import { devices } from "../utilities/breakpoints";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: big-caslon-fb, serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: black;
+    color: white;
+  }
+
+  h1 {
+    font-weight: 400;
+    font-style: italic;
+  }
+`;
+
+const Footer = styled.footer`
+  margin-top: 30px;
+  text-align: center;
+`;
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
-
   return (
-    <>
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`
-        }}
-      >
+    <ProductsProvider>
+      <CartProvider>
+        <GlobalStyle />
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
+        <Footer>© {new Date().getFullYear()}</Footer>
+      </CartProvider>
+    </ProductsProvider>
   );
 };
 
