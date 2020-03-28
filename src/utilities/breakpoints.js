@@ -1,6 +1,6 @@
 const size = {
-  small: "425px",
-  medium: "768px",
+  small: "593px",
+  medium: "769px",
   large: "1440px",
   extraLarge: "2560px"
 };
