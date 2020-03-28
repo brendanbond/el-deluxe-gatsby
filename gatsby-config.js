@@ -44,10 +44,11 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-source-strapi",
+      resolve: "gatsby-source-strapi-v2",
       options: {
         apiURL: "http://localhost:1337",
         contentTypes: ["album"],
+        singleTypes: ["gear-section"],
         queryLimit: 1000
       }
     },
