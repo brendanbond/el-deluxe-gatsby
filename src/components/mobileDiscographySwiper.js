@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ReactSwipe from "react-swipe";
+import Img from "gatsby-image";
 
 const AlbumMediaObject = styled.div`
   display: flex;
@@ -10,7 +11,7 @@ const AlbumMediaObject = styled.div`
   margin: 30px 0 15px 0;
 `;
 
-const AlbumThumbnail = styled.img`
+const AlbumThumbnail = styled.div`
   flex-basis: 130px;
   flex-shrink: 0;
   margin-right: 20px;
@@ -31,19 +32,12 @@ const AlbumQuote = styled.h4`
   text-align: center;
 `;
 
-const STRAPI_URL = "http://localhost:1337";
-
-function mobileDiscographySwiper({
-  albumData,
-  currentPage,
-  onSwipeTransitionEnd
-}) {
+function mobileDiscographySwiper({ albumData, setCurrentPage }) {
   return (
     <ReactSwipe
       key={albumData.length}
       swipeOptions={{
-        startSlide: currentPage,
-        transitionEnd: onSwipeTransitionEnd
+        transitionEnd: index => setCurrentPage(index)
       }}
       childCount={albumData.length}
     >
@@ -54,7 +48,9 @@ function mobileDiscographySwiper({
               return (
                 <React.Fragment key={`album-${album.id}`}>
                   <AlbumMediaObject>
-                    <AlbumThumbnail src={STRAPI_URL + album.Cover[0].url} />
+                    <AlbumThumbnail>
+                      <Img fluid={album.Cover.childImageSharp.fluid} />
+                    </AlbumThumbnail>
                     <div>
                       <AlbumHeading>
                         {album.Artist} - {album.Title.toUpperCase()}
@@ -76,4 +72,4 @@ function mobileDiscographySwiper({
   );
 }
 
-export default mobileDiscographySwiper;
+export default React.memo(mobileDiscographySwiper);

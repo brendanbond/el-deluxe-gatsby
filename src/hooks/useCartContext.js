@@ -33,7 +33,6 @@ function useCart() {
   const removeFromCart = sku => {
     setContents(prevState => {
       const newState = prevState.filter(obj => obj.sku !== sku);
-      console.log(newState);
       return newState;
     });
   };

@@ -4,9 +4,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`
+    title: `Electric Deluxe Recorders`,
+    description: `Electric Deluxe Recorders is the personal studio of Grammy Award-winning producer, songwriter, and guitarist Adrian Quesada.`,
+    author: `@brendanbond`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -47,7 +47,7 @@ module.exports = {
       resolve: "gatsby-source-strapi-v2",
       options: {
         apiURL: "http://localhost:1337",
-        contentTypes: ["album"],
+        contentTypes: ["album", "photo"],
         singleTypes: ["gear-section"],
         queryLimit: 1000
       }
@@ -63,7 +63,7 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
       }
-    },
-    `gatsby-plugin-offline`
+    }
+    //d`gatsby-plugin-offline`
   ]
 };

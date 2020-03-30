@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import PageIndicators from "../components/pageIndicators";
 import MobileDiscographySwiper from "./mobileDiscographySwiper";
 
@@ -12,12 +12,8 @@ function chunkArray(array, chunkSize) {
 }
 
 function MobileDiscography({ albumData }) {
-  const paginatedAlbums = chunkArray(albumData, 4);
   const [currentPage, setCurrentPage] = useState(0);
-
-  const handleSwipeTransitionEnd = (index, el) => {
-    setCurrentPage(index);
-  };
+  const paginatedAlbums = useMemo(() => chunkArray(albumData, 4), [albumData]);
 
   return (
     <>
@@ -27,8 +23,7 @@ function MobileDiscography({ albumData }) {
       />
       <MobileDiscographySwiper
         albumData={paginatedAlbums}
-        currentPage={currentPage}
-        onSwipeTransitionEnd={handleSwipeTransitionEnd}
+        setCurrentPage={setCurrentPage}
       />
     </>
   );

@@ -1,73 +1,174 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Img from "gatsby-image";
 
-import Cart from "../components/cart";
 import StoreForm from "../components/storeForm";
 import { useProductsContext } from "../hooks/useProductContext";
 import { useCartContext } from "../hooks/useCartContext";
+import storeMobileBackground from "../images/store-mobile-background.jpg";
+import storeDesktopBackground from "../images/store-desktop-background.jpg";
+import { breakpoint } from "../utilities/breakpoints";
 
-const Container = styled.div`
+const StoreSection = styled.section`
+  background-image: url(${storeMobileBackground});
+  background-size: cover;
+  padding: 70px 0 70px 0;
+
+  @media ${breakpoint.medium} {
+    background-image: url(${storeDesktopBackground});
+    background-size: cover;
+    background-position: center 20%;
+  }
+`;
+
+const StoreContainer = styled.div`
   margin: 3rem 0;
   max-width: 80%;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media ${breakpoint.medium} {
+    flex-direction: row;
+    flex-shrink: 0;
+  }
 `;
 
-const ProductImage = styled.img`
-  width: 300px;
-  flex-basis: 600px;
+const ProductImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  flex-basis: 50%;
+`;
+
+const ProductImage = styled(Img)`
+  flex-basis: 250px;
+  width: 250px;
+
+  @media ${breakpoint.medium} {
+    flex-basis: 50%;
+    width: 100%;
+  }
+`;
+
+const ImageIndicatorContainer = styled.div`
+  display: inline;
+`;
+
+const LeftArrow = styled.i`
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 6px;
+  transform: rotate(135deg);
+  margin: 10px;
+  cursor: pointer;
+
+  @media ${breakpoint.medium} {
+    padding: 12px;
+    border-width: 0 7px 7px 0;
+    margin: 20px;
+  }
+`;
+
+const RightArrow = styled.i`
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 6px;
+  transform: rotate(-45deg);
+  margin: 10px;
+  cursor: pointer;
+
+  @media ${breakpoint.medium} {
+    padding: 12px;
+    border-width: 0 7px 7px 0;
+    margin: 20px;
+  }
+`;
+
+const StoreFormContainer = styled.div`
+  width: 275px;
+  @media ${breakpoint.medium} {
+    flex-basis: 50%;
+    width: 60%;
+  }
 `;
 
 function Store() {
   const { products } = useProductsContext();
   const { addToCart } = useCartContext();
-  const [formInput, setFormInput] = useState({
-    product: Object.keys(products)[0],
-    variant: products[Object.keys(products)[0]].variants[0].sku,
-    quantity: 1
-  });
+  const [productIndex, setProductIndex] = useState(0);
+  const [variantIndex, setVariantIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+
+  // console.log("Product index is", productIndex);
+  // console.log("Variant index is", variantIndex);
+  // console.log("Quantity is", quantity);
 
   const handleFormInputChange = event => {
-    const key = event.target.name;
+    console.log("Form handler fired.");
+    const formInput = event.target.name;
     const value = event.target.value;
-    setFormInput(() => {
-      if (key === "product") {
-        return {
-          ...formInput,
-          product: value,
-          variant: products[value].variants[0].sku
-        };
-      } else {
-        return { ...formInput, [key]: value };
-      }
-    });
+
+    if (formInput === "product") {
+      setProductIndex(parseInt(value));
+      console.log("Product index changed to", value);
+    } else if (formInput === "variant") {
+      setVariantIndex(parseInt(value));
+      console.log("Variant index changed to", variantIndex);
+    } else {
+      setQuantity(parseInt(value));
+      console.log("Quantity set to", quantity);
+    }
   };
 
-  const handleClick = event => {
-    event.preventDefault();
-    addToCart(
-      formInput.variant,
-      formInput.product,
-      parseInt(formInput.quantity)
-    );
+  const incrementProduct = () => {
+    if (productIndex === products.length - 1) {
+      setProductIndex(0);
+    } else {
+      setProductIndex(productIndex + 1);
+    }
+  };
+
+  const decrementProduct = () => {
+    if (productIndex === 0) {
+      setProductIndex(products.length - 1);
+    } else {
+      setProductIndex(productIndex - 1);
+    }
   };
 
   return products ? (
-    <>
-      <Container>
-        <ProductImage src={products[formInput.product].image} />
-        <StoreForm
-          formInput={formInput}
-          onFormInputChange={handleFormInputChange}
-          onClick={handleClick}
-        />
-      </Container>
-      <Container>
-        <Cart />
-      </Container>
-    </>
+    <StoreSection>
+      <StoreContainer>
+        <ProductImageContainer>
+          <ProductImage fluid={products[productIndex].image} />
+          <ImageIndicatorContainer>
+            <LeftArrow onClick={decrementProduct} />
+            <RightArrow onClick={incrementProduct} />
+          </ImageIndicatorContainer>
+        </ProductImageContainer>
+        <StoreFormContainer>
+          <StoreForm
+            productIndex={productIndex}
+            variantIndex={variantIndex}
+            quantity={quantity}
+            onFormInputChange={handleFormInputChange}
+            onClick={() =>
+              addToCart(
+                products[productIndex].variants[variantIndex].sku,
+                products[productIndex].id,
+                quantity
+              )
+            }
+          />
+        </StoreFormContainer>
+      </StoreContainer>
+    </StoreSection>
   ) : (
     <div>
       <h3>There are currently no products in the store.</h3>

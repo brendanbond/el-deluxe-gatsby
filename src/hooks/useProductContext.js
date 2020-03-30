@@ -26,11 +26,18 @@ function useProducts() {
             name
           }
           price
-          image
           currency
           product {
             id
             name
+          }
+          localFiles {
+            id
+            childImageSharp {
+              fluid(maxWidth: 300, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
       }
@@ -42,37 +49,25 @@ function useProducts() {
 }
 
 const getProductsWithSkus = data => {
-  const products = data.allStripeSku.nodes.reduce((obj, node) => {
-    if (!obj[node.product.id]) {
-      obj[node.product.id] = {
+  const products = data.allStripeSku.nodes.reduce((result, node) => {
+    let index = result.findIndex(el => node.product.id === el.id);
+    if (index === -1) {
+      result.push({
+        id: node.product.id,
         name: node.product.name,
         variants: [{ sku: node.id, name: node.attributes.name }],
-        image: node.image
-      };
+        image: node.localFiles[0].childImageSharp.fluid
+      });
     } else {
-      obj[node.product.id].variants.push({
+      result[index].variants.push({
         sku: node.id,
         name: node.attributes.name
       });
     }
-    return obj;
-  }, {});
+    return result;
+  }, []);
 
   return products;
 };
 
 export { ProductsProvider, useProductsContext };
-
-/*
-{
-  [productId]: {
-    name: "dkf;ak",
-    skus: [
-      {
-        sku: ;dkasdklfjafa,
-        name: "dkjaf;"
-      }
-    ]
-  }
-}
-*/

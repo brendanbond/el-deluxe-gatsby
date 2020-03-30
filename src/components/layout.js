@@ -4,7 +4,6 @@ import styled, { createGlobalStyle } from "styled-components";
 
 import { ProductsProvider } from "../hooks/useProductContext";
 import { CartProvider } from "../hooks/useCartContext";
-import { devices } from "../utilities/breakpoints";
 
 const GlobalStyle = createGlobalStyle`
   body {

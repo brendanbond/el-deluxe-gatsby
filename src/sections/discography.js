@@ -4,28 +4,32 @@ import { useStaticQuery, graphql } from "gatsby";
 import { useMediaQuery } from "react-responsive";
 
 import MobileDiscography from "../components/mobileDiscography";
+import Img from "gatsby-image";
 import { breakpoint } from "../utilities/breakpoints";
 import discographyMobileBackground from "../images/discography-mobile-background.jpg";
 import discographyDesktopBackground from "../images/discography-desktop-background.jpg";
 
-const STRAPI_URL = "http://localhost:1337";
-
 const DiscographyBackground = styled.section`
   background-image: url(${discographyMobileBackground});
   background-size: cover;
-  min-height: 650px;
+  min-height: 600px;
 
   @media ${breakpoint.small} {
     background-image: url(${discographyDesktopBackground});
+    padding-bottom: 50px;
   }
 `;
 
 const DiscographyContainer = styled.div`
   margin: auto;
-  width: 95%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media ${breakpoint.medium} [
+    width: 90%;
+  ]
 `;
 
 const AlbumSpotlightContainer = styled.div`
@@ -38,8 +42,7 @@ const AlbumSpotlightContainer = styled.div`
   height: 220px;
 `;
 
-const AlbumSpotlightImage = styled.img`
-  width: 200px;
+const AlbumSpotlightImage = styled.div`
   flex-basis: 190px;
   flex-shrink: 0;
   margin-right: 30px;
@@ -79,17 +82,13 @@ const AlbumGridRow = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   width: 99%;
-  margin: auto;
+  margin: 0 auto;
 `;
 
 const AlbumGridItem = styled.div`
-  width: 175px;
-  flex-basis: 10vw;
+  flex-basis: 12vw;
   margin: 5px 5px 5px 5px;
-`;
-
-const AlbumImage = styled.img`
-  max-width: 125px;
+  flex-shrink: 0;
 `;
 
 function Discography() {
@@ -106,7 +105,11 @@ function Discography() {
           Quote
           Title
           Cover {
-            url
+            childImageSharp {
+              fluid(maxWidth: 300) {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
       }
@@ -138,10 +141,13 @@ function Discography() {
         {isDesktop ? (
           <>
             <AlbumSpotlightContainer>
-              <AlbumSpotlightImage
-                src={STRAPI_URL + albumData[currentAlbumSpotlight].Cover[0].url}
-                alt={`Cover art for the album  ${albumData[currentAlbumSpotlight].Title}`}
-              />
+              <AlbumSpotlightImage>
+                <Img
+                  fluid={
+                    albumData[currentAlbumSpotlight].Cover.childImageSharp.fluid
+                  }
+                />
+              </AlbumSpotlightImage>
               <AlbumSpotlightTextContainer>
                 <AlbumSpotlightHeader>
                   {albumData[currentAlbumSpotlight].Artist.toUpperCase()} -{" "}
@@ -168,8 +174,8 @@ function Discography() {
                     onMouseLeave={handleMouseLeave}
                     onClick={event => handleClick(index, event)}
                   >
-                    <AlbumImage
-                      src={STRAPI_URL + album.Cover[0].url}
+                    <Img
+                      fluid={album.Cover.childImageSharp.fluid}
                       alt={`Cover art for the album ${album.Title}`}
                     />
                   </AlbumGridItem>
