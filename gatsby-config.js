@@ -14,18 +14,17 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        typekit: {
-          id: "xwq8qoz"
-        }
+        name: `images`,
+        path: `${__dirname}/src/images`
       }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`
+        name: `fonts`,
+        path: `${__dirname}/src/fonts`
       }
     },
     {

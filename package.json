@@ -7,9 +7,6 @@
   "dependencies": {
     "@stripe/stripe-js": "^1.2.0",
     "axios": "^0.19.2",
-    "babel-plugin-styled-components": "^1.10.7",
-    "dotenv": "^8.2.0",
-    "eslint-plugin-react-hooks": "^3.0.0",
     "gatsby": "^2.19.45",
     "gatsby-cli": "^2.11.3",
     "gatsby-image": "^2.2.44",
@@ -18,7 +15,6 @@
     "gatsby-plugin-react-helmet": "^3.1.24",
     "gatsby-plugin-sharp": "^2.4.13",
     "gatsby-plugin-styled-components": "^3.2.1",
-    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.1.56",
     "gatsby-source-strapi-v2": "^0.0.15",
     "gatsby-source-stripe": "^3.0.7",
@@ -30,13 +26,17 @@
     "react-images": "^1.1.0",
     "react-photo-gallery": "^8.0.0",
     "react-responsive": "^8.0.3",
+    "react-scroll": "^1.7.16",
     "react-swipe": "^6.0.4",
     "styled-components": "^5.0.1",
+    "styled-normalize": "^8.0.7",
     "swipe-js-iso": "^2.1.5"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.7",
     "eslint": "^6.8.0",
     "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-react-hooks": "^3.0.0",
     "prettier": "^1.19.1"
   },
   "keywords": [

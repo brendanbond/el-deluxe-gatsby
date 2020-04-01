@@ -1,7 +1,7 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 
+import ContactForm from "../components/contactForm";
 import { breakpoint } from "../utilities/breakpoints";
 import ContactMobileBackground from "../images/contact-mobile-background.jpg";
 import ContactDesktopBackground from "../images/contact-desktop-background.jpg";
@@ -9,12 +9,16 @@ import ContactDesktopBackground from "../images/contact-desktop-background.jpg";
 const ContactSection = styled.section`
   background-image: url(${ContactMobileBackground});
   background-size: cover;
-  overflow: auto;
+  background-position: center center;
+  padding: 30px 0;
+  min-height: 500px;
 
   @media ${breakpoint.medium} {
     background-image: none;
     display: flex;
     flex-direction: row;
+    padding: 0;
+    min-height: 700px;
   }
 `;
 
@@ -30,29 +34,37 @@ const ContactImageContainer = styled.div`
 `;
 
 const ContactFormContainer = styled.div`
-  text-align: center;
+  display: block;
   color: white;
-  width: 80%;
   font-size: 14px;
-  white-space: pre-wrap;
+  width: 80%;
   margin: 0 auto;
 
   @media ${breakpoint.medium} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 50%;
     padding: 0 20px 0 20px;
     color: black;
     background-color: white;
-    overflow: hidden;
     text-align: left;
   }
 `;
 
-function Contact() {
+const ContactFormHeading = styled.h1`
+  font-weight: 800;
+  font-style: normal;
+  text-align: center;
+`;
 
+function Contact({name}) {
   return (
-    <ContactSection>
+    <ContactSection name={name}>
       <ContactImageContainer />
       <ContactFormContainer>
+        <ContactFormHeading>Get In Touch</ContactFormHeading>
+          <ContactForm />
       </ContactFormContainer>
     </ContactSection>
   );

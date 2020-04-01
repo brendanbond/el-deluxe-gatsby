@@ -9,7 +9,7 @@ import { breakpoint } from "../utilities/breakpoints";
 import discographyMobileBackground from "../images/discography-mobile-background.jpg";
 import discographyDesktopBackground from "../images/discography-desktop-background.jpg";
 
-const DiscographyBackground = styled.section`
+const DiscoraphySection = styled.section`
   background-image: url(${discographyMobileBackground});
   background-size: cover;
   min-height: 600px;
@@ -91,7 +91,7 @@ const AlbumGridItem = styled.div`
   flex-shrink: 0;
 `;
 
-function Discography() {
+function Discography({name}) {
   const isDesktop = useMediaQuery({ query: breakpoint.small });
   const data = useStaticQuery(graphql`
     query AlbumQuery {
@@ -136,7 +136,7 @@ function Discography() {
   };
 
   return (
-    <DiscographyBackground>
+    <DiscoraphySection name={name}>
       <DiscographyContainer>
         {isDesktop ? (
           <>
@@ -187,7 +187,7 @@ function Discography() {
           <MobileDiscography albumData={albumData} />
         )}
       </DiscographyContainer>
-    </DiscographyBackground>
+    </DiscoraphySection>
   );
 }
 

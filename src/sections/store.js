@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Img from "gatsby-image";
 
 import StoreForm from "../components/storeForm";
-import { useProductsContext } from "../hooks/useProductContext";
+import { useProductsContext } from "../hooks/useProductsContext";
 import { useCartContext } from "../hooks/useCartContext";
 import storeMobileBackground from "../images/store-mobile-background.jpg";
 import storeDesktopBackground from "../images/store-desktop-background.jpg";
@@ -17,7 +17,7 @@ const StoreSection = styled.section`
   @media ${breakpoint.medium} {
     background-image: url(${storeDesktopBackground});
     background-size: cover;
-    background-position: center 20%;
+    background-position: center center;
   }
 `;
 
@@ -42,11 +42,12 @@ const ProductImageContainer = styled.div`
   align-items: center;
   flex-shrink: 0;
   flex-basis: 50%;
+  width: 70%;
+  margin: auto;
 `;
 
 const ProductImage = styled(Img)`
-  flex-basis: 250px;
-  width: 250px;
+  width: 100%;
 
   @media ${breakpoint.medium} {
     flex-basis: 50%;
@@ -98,16 +99,12 @@ const StoreFormContainer = styled.div`
   }
 `;
 
-function Store() {
+function Store({ name }) {
   const { products } = useProductsContext();
   const { addToCart } = useCartContext();
   const [productIndex, setProductIndex] = useState(0);
   const [variantIndex, setVariantIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
-
-  // console.log("Product index is", productIndex);
-  // console.log("Variant index is", variantIndex);
-  // console.log("Quantity is", quantity);
 
   const handleFormInputChange = event => {
     console.log("Form handler fired.");
@@ -143,7 +140,7 @@ function Store() {
   };
 
   return products ? (
-    <StoreSection>
+    <StoreSection name={name}>
       <StoreContainer>
         <ProductImageContainer>
           <ProductImage fluid={products[productIndex].image} />

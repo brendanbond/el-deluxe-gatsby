@@ -1,9 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { createGlobalStyle } from "styled-components";
+import { Link } from "react-scroll";
 
-import { ProductsProvider } from "../hooks/useProductContext";
+import StickyNav from "../components/stickyNav";
+import Cart from "../components/cart";
+import { ProductsProvider } from "../hooks/useProductsContext";
 import { CartProvider } from "../hooks/useCartContext";
+import Logo from "../images/logo.png";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -23,8 +27,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Footer = styled.footer`
-  margin-top: 30px;
+  margin: 20px;
   text-align: center;
+`;
+
+const OuterLink = styled.a`
+  color: white;
 `;
 
 const Layout = ({ children }) => {
@@ -32,8 +40,32 @@ const Layout = ({ children }) => {
     <ProductsProvider>
       <CartProvider>
         <GlobalStyle />
-        <main>{children}</main>
-        <Footer>© {new Date().getFullYear()}</Footer>
+        <main>
+          <StickyNav />
+          <Cart />
+          {children}
+        </main>
+        <Footer>
+          <div>
+            <Link
+              activeClass="active"
+              to="about"
+              spy={true}
+              smooth={true}
+              offset={-75}
+              duration={500}
+            >
+              <img src={Logo} width="100px" alt="Electric Deluxe Logo" />
+            </Link>
+          </div>
+          © {new Date().getFullYear()} Electric Deluxe Recorders. All rights
+          reserved.
+          <br />
+          All photos by Cristian Sigler.
+          <br />
+          Site by{" "}
+          <OuterLink href="http://brendanbond.dev">Brendan Bond</OuterLink>.
+        </Footer>
       </CartProvider>
     </ProductsProvider>
   );

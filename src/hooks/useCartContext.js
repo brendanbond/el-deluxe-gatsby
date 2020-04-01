@@ -1,4 +1,6 @@
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, useEffect, useContext, createContext } from "react";
+
+import { useProductsContext } from "./useProductsContext";
 
 const cartContext = createContext();
 
@@ -12,10 +14,46 @@ function useCartContext() {
 }
 
 function useCart() {
-  const [contents, setContents] = useState([]); // TODO: Save cart to local storage.
+  const { products } = useProductsContext();
+  const [cartIsShown, setCartIsShown] = useState(false);
+  const [cartContents, setCartContents] = useState(() => {
+    let localCart;
+    try {
+      localCart = JSON.parse(localStorage.getItem("el-deluxe-cart"));
+    } catch (err) {
+      console.error(err.message);
+    }
+    if (!localCart || !Array.isArray(localCart)) return [];
+    return localCart;
+  });
+
+  const cartTotalQuantity = () => {
+    return cartContents.reduce((acc, curr) => acc + curr.quantity, 0);
+  };
+
+  const cartTotalCost = () => {
+    return cartContents.reduce((acc, curr) => {
+      let currentProduct = products.find(
+        product => curr.productId === product.id
+      );
+      let currentSku = currentProduct.variants.find(
+        variant => curr.sku === variant.sku
+      );
+
+      return acc + currentSku.price * curr.quantity;
+    }, 0);
+  };
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("el-deluxe-cart", JSON.stringify(cartContents));
+    } catch (err) {
+      console.error(err);
+    }
+  }, [cartContents]);
 
   const addToCart = (sku, productId, quantity = 1) => {
-    setContents(prevState => {
+    setCartContents(prevState => {
       let newState = [...prevState];
       const currIndex = newState.findIndex(obj => obj.sku === sku);
       if (currIndex !== -1) {
@@ -26,20 +64,32 @@ function useCart() {
       } else {
         newState.push({ sku, productId, quantity });
       }
+      console.log("Cart has new state:", newState);
       return newState;
     });
   };
 
   const removeFromCart = sku => {
-    setContents(prevState => {
+    setCartContents(prevState => {
       const newState = prevState.filter(obj => obj.sku !== sku);
       return newState;
     });
   };
 
-  const cart = contents;
+  const toggleCart = forcedState => {
+    console.log("toggleCart fired");
+    setCartIsShown(prevState => forcedState || !prevState);
+  };
 
-  return { cart, addToCart, removeFromCart };
+  return {
+    cartContents,
+    addToCart,
+    removeFromCart,
+    cartIsShown,
+    cartTotalQuantity,
+    cartTotalCost,
+    toggleCart
+  };
 }
 
 export { CartProvider, useCartContext };

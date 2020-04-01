@@ -56,12 +56,13 @@ const getProductsWithSkus = data => {
         id: node.product.id,
         name: node.product.name,
         variants: [{ sku: node.id, name: node.attributes.name }],
-        image: node.localFiles[0].childImageSharp.fluid
+        image: node.localFiles[0].childImageSharp.fluid,
       });
     } else {
       result[index].variants.push({
         sku: node.id,
-        name: node.attributes.name
+        name: node.attributes.name,
+        price: node.price / 100
       });
     }
     return result;

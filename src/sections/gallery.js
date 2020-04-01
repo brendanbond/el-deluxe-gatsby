@@ -11,11 +11,6 @@ const GallerySection = styled.section`
   padding-bottom: 10px;
 `;
 
-const GalleryHeading = styled.h5`
-  font-style: italic;
-  text-align: center;
-`;
-
 const GalleryImageContainer = styled.div`
   width: ${props => props.width};
   height: ${props => props.height};
@@ -57,7 +52,7 @@ const getAspectRatio = float => {
   return [width, height];
 };
 
-function Gallery() {
+function Gallery({name}) {
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
   const data = useStaticQuery(graphql`
@@ -123,8 +118,7 @@ function Gallery() {
   );
 
   return (
-    <GallerySection>
-      <GalleryHeading>All photos &copy; 2020 Cristian Sigler</GalleryHeading>
+    <GallerySection name={name}>
       <PhotoGallery photos={photos} renderImage={imageRenderer} />
       <ModalGateway>
         {viewerIsOpen ? (

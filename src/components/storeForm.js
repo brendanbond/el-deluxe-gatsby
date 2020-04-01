@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { useProductsContext } from "../hooks/useProductContext";
+import { useProductsContext } from "../hooks/useProductsContext";
 import { breakpoint } from "../utilities/breakpoints";
 
 const Container = styled.div`
@@ -23,7 +23,7 @@ const ShirtFormSelect = styled.select`
   height: 43px;
 
   @media ${breakpoint.medium} {
-    font-size: 14pt;
+    font-size: 11pt;
   }
 `;
 
@@ -41,7 +41,7 @@ const ShirtFormButton = styled.button`
   cursor: pointer;
 
   @media ${breakpoint.medium} {
-    font-size: 14pt;
+    font-size: 11pt;
   }
 `;
 

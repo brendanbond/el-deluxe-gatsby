@@ -1,24 +1,33 @@
 import React from "react";
 import styled from "styled-components";
+
+import { breakpoint } from "../utilities/breakpoints";
 import aboutBackgroundMobile from "../images/about-background-mobile.png";
 import aboutBackgroundDesktop from "../images/about-background-desktop.jpg";
 import facebookSocialIcon from "../images/facebook-social-icon.svg";
 import instagramSocialIcon from "../images/instagram-social-icon.svg";
 
-import { breakpoint } from "../utilities/breakpoints";
-
 const AboutSection = styled.section`
-  background-image: url(${aboutBackgroundMobile});
-  background-size: cover;
   height: 650px;
-
+  position: relative;
+  
   @media ${breakpoint.medium} {
     height: 790px;
-    background-image: url(${aboutBackgroundDesktop});
-    display: flex;
-    flex-direction: row-reverse;
+    overflow: visible;
   }
-}
+`;
+
+const BackgroundImage = styled.div`
+  background-image: url(${aboutBackgroundMobile});
+  background-size: cover;
+  position: absolute;
+  top: -75px;
+  width: 100%;
+  height: 865px;
+  z-index: -1;
+  @media ${breakpoint.medium} {
+    background-image: url(${aboutBackgroundDesktop});
+  }
 `;
 
 const AboutContainer = styled.div`
@@ -28,14 +37,20 @@ const AboutContainer = styled.div`
   align-items: center;
   text-align: center;
   width: 80%;
-  height: 100%;
-  margin: auto;
+  margin: 0 auto;
 
   @media ${breakpoint.medium} {
+    justify-content: center;
     align-items: flex-end;
     text-align: right;
-    width: 33%;
-    margin: 0 10% 0 0;
+    width: 40%;
+    padding: 100px 0 0 50%;
+    margin: 0;
+    font-size: 12pt;
+  }
+
+  @media ${breakpoint.large} {
+    font-size: 14pt;
   }
 `;
 
@@ -45,7 +60,6 @@ const AboutHeading = styled.h1`
 
   @media ${breakpoint.medium} {
     font-size: 1.5em;
-
   }
 `;
 
@@ -72,9 +86,10 @@ const SocialIcon = styled.img`
   margin: 0 10px;
 `;
 
-function About() {
+function About({name}) {
   return (
-    <AboutSection>
+    <AboutSection name={name}>
+      <BackgroundImage />
       <AboutContainer>
         <AboutHeading>ELECTRIC DELUXE RECORDERS</AboutHeading>
         <AboutSubHeading>

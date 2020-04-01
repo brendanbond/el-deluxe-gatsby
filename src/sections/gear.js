@@ -56,7 +56,7 @@ const GearList = styled.div`
   margin-bottom: 30px;
 `;
 
-function Gear() {
+function Gear({name}) {
   const data = useStaticQuery(graphql`
     query GearQuery {
       allStrapiGearSection {
@@ -71,7 +71,7 @@ function Gear() {
   const gearData = data.allStrapiGearSection.nodes;
 
   return (
-    <GearSection>
+    <GearSection name={name}>
       <GearImageContainer />
       <GearContainer>
         <GearIntro>{gearData[0].IntroParagraph}</GearIntro>

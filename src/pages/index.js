@@ -1,4 +1,5 @@
 import React from "react";
+
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import About from "../sections/about";
@@ -6,7 +7,8 @@ import Discography from "../sections/discography";
 import Gear from "../sections/gear";
 import Gallery from "../sections/gallery";
 import Store from "../sections/store";
-import { ProductsProvider } from "../hooks/useProductContext";
+import Contact from "../sections/contact";
+import { ProductsProvider } from "../hooks/useProductsContext";
 import { CartProvider } from "../hooks/useCartContext";
 
 const IndexPage = () => (
@@ -14,11 +16,12 @@ const IndexPage = () => (
     <SEO title="Home" />
     <ProductsProvider>
       <CartProvider>
-        <About />
-        <Discography />
-        <Gear />
-        <Gallery />
-        <Store />
+        <About name="about" />
+        <Discography name="discography" />
+        <Gear name="gear" />
+        <Gallery name="gallery" />
+        <Store name="store" />
+        <Contact name="contact" />
       </CartProvider>
     </ProductsProvider>
   </Layout>
