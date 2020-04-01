@@ -27,11 +27,11 @@ function useCart() {
     return localCart;
   });
 
-  const cartTotalQuantity = () => {
+  const getCartQuantity = () => {
     return cartContents.reduce((acc, curr) => acc + curr.quantity, 0);
   };
 
-  const cartTotalCost = () => {
+  const getCartSubtotal = () => {
     return cartContents.reduce((acc, curr) => {
       let currentProduct = products.find(
         product => curr.productId === product.id
@@ -43,6 +43,14 @@ function useCart() {
       return acc + currentSku.price * curr.quantity;
     }, 0);
   };
+
+  const getCartSalesTax = () => {
+    return getCartSubtotal() * 0.0825;
+  }
+
+  const getCartGrandTotal = () => {
+    return getCartSubtotal() + getCartSalesTax();
+  }
 
   useEffect(() => {
     try {
@@ -86,8 +94,10 @@ function useCart() {
     addToCart,
     removeFromCart,
     cartIsShown,
-    cartTotalQuantity,
-    cartTotalCost,
+    getCartQuantity,
+    getCartSubtotal,
+    getCartSalesTax,
+    getCartGrandTotal,
     toggleCart
   };
 }

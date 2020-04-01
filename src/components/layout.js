@@ -11,7 +11,6 @@ import Logo from "../images/logo.png";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    box-sizing: border-box;
     font-family: big-caslon-fb, serif;
     font-weight: 400;
     font-style: normal;

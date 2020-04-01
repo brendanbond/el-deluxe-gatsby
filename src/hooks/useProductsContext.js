@@ -55,8 +55,10 @@ const getProductsWithSkus = data => {
       result.push({
         id: node.product.id,
         name: node.product.name,
-        variants: [{ sku: node.id, name: node.attributes.name }],
-        image: node.localFiles[0].childImageSharp.fluid,
+        variants: [
+          { sku: node.id, name: node.attributes.name, price: node.price / 100 }
+        ],
+        image: node.localFiles[0].childImageSharp.fluid
       });
     } else {
       result[index].variants.push({
