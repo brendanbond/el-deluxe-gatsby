@@ -65,6 +65,13 @@ const CartItemsContainer = styled.div`
   flex-direction: column;
 `;
 
+const CartMessageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 1em 0;
+  border-top: 1px solid white;
+`;
+
 function Cart() {
   const { products } = useProductsContext();
   const {
@@ -112,7 +119,9 @@ function Cart() {
               );
             })
           ) : (
-            <div>There are currently no items in your cart.</div>
+            <CartMessageContainer>
+              There are currently no items in your cart.
+            </CartMessageContainer>
           )}
         </CartItemsContainer>
         <CartCheckout
