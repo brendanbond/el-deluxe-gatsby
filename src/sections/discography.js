@@ -98,13 +98,13 @@ function Discography({ name }) {
       allStrapiAlbum {
         nodes {
           id
-          Artist
-          Attribution
-          Credits
-          Label
-          Quote
-          Title
-          Cover {
+          artist
+          attribution
+          credits
+          label
+          quote
+          title
+          image {
             childImageSharp {
               fluid(maxWidth: 300) {
                 ...GatsbyImageSharpFluid
@@ -137,23 +137,23 @@ function Discography({ name }) {
               <AlbumSpotlightImage>
                 <Img
                   fluid={
-                    albumData[currentAlbumSpotlight].Cover.childImageSharp.fluid
+                    albumData[currentAlbumSpotlight].image.childImageSharp.fluid
                   }
                 />
               </AlbumSpotlightImage>
               <AlbumSpotlightTextContainer>
                 <AlbumSpotlightHeader>
-                  {albumData[currentAlbumSpotlight].Artist.toUpperCase()} -{" "}
-                  {albumData[currentAlbumSpotlight].Title.toUpperCase()} (
-                  {albumData[currentAlbumSpotlight].Label})
+                  {albumData[currentAlbumSpotlight].artist.toUpperCase()} -{" "}
+                  {albumData[currentAlbumSpotlight].title.toUpperCase()} (
+                  {albumData[currentAlbumSpotlight].label})
                 </AlbumSpotlightHeader>
                 <AlbumSpotlightHeader>
-                  {albumData[currentAlbumSpotlight].Credits}
+                  {albumData[currentAlbumSpotlight].credits}
                 </AlbumSpotlightHeader>
                 <AlbumSpotlightQuote>
-                  {albumData[currentAlbumSpotlight].Quote} {"  "}-
+                  {albumData[currentAlbumSpotlight].quote} {"  "}-
                   <AlbumSpotlightAttribution>
-                    {albumData[currentAlbumSpotlight].Attribution}
+                    {albumData[currentAlbumSpotlight].attribution}
                   </AlbumSpotlightAttribution>
                 </AlbumSpotlightQuote>
               </AlbumSpotlightTextContainer>
@@ -167,8 +167,8 @@ function Discography({ name }) {
                     onClick={event => handleClick(index, event)}
                   >
                     <Img
-                      fluid={album.Cover.childImageSharp.fluid}
-                      alt={`Cover art for the album ${album.Title}`}
+                      fluid={album.image.childImageSharp.fluid}
+                      alt={`Cover art for the album ${album.title}`}
                     />
                   </AlbumGridItem>
                 );

@@ -6,6 +6,7 @@ const cartContext = createContext();
 
 function CartProvider({ children }) {
   const cart = useCart();
+  console.log(cart);
   return <cartContext.Provider value={cart}>{children}</cartContext.Provider>;
 }
 
@@ -109,4 +110,4 @@ function useCart() {
   };
 }
 
-export { CartProvider, useCartContext };
+export { CartProvider, useCartContext, cartContext };

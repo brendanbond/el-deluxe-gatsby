@@ -1,6 +1,5 @@
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { useCartContext } from "../hooks/useCartContext";
 
 const stripePromise = loadStripe("pk_test_3YC1wULDvJhGMryXNN1JllJJ");
 
@@ -22,15 +21,10 @@ const redirectToCheckout = async (event, items) => {
 };
 
 function Checkout({ className, children, items }) {
-  const { clearCart } = useCartContext();
-
   return (
     <button
       className={className}
-      onClick={event => {
-        clearCart();
-        redirectToCheckout(event, items);
-      }}
+      onClick={event => redirectToCheckout(event, items)}
     >
       {children}
     </button>

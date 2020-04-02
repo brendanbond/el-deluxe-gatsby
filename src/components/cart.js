@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import CartItem from "./cartItem";
 import CartCheckout from "./cartCheckout";
-import { useCartContext } from "../hooks/useCartContext";
+import { useCartContext, cartContext } from "../hooks/useCartContext";
 import { useProductsContext } from "../hooks/useProductsContext";
 
 const CartContainer = styled.div`

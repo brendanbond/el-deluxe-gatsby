@@ -49,18 +49,18 @@ function mobileDiscographySwiper({ albumData, setCurrentPage }) {
                 <React.Fragment key={`album-${album.id}`}>
                   <AlbumMediaObject>
                     <AlbumThumbnail>
-                      <Img fluid={album.Cover.childImageSharp.fluid} />
+                      <Img fluid={album.image.childImageSharp.fluid} />
                     </AlbumThumbnail>
                     <div>
                       <AlbumHeading>
-                        {album.Artist} - {album.Title.toUpperCase()}
+                        {album.Artist} - {album.title.toUpperCase()}
                       </AlbumHeading>
-                      <AlbumHeading>({album.Label})</AlbumHeading>
-                      <AlbumHeading>{album.Credits}</AlbumHeading>
+                      <AlbumHeading>({album.label})</AlbumHeading>
+                      <AlbumHeading>{album.credits}</AlbumHeading>
                     </div>
                   </AlbumMediaObject>
                   <AlbumQuote>
-                    {album.Quote} - <em>{album.Attribution.toUpperCase()}</em>
+                    {album.quote} - <em>{album.attribution.toUpperCase()}</em>
                   </AlbumQuote>
                 </React.Fragment>
               );

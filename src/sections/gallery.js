@@ -52,14 +52,14 @@ const getAspectRatio = float => {
   return [width, height];
 };
 
-function Gallery({name}) {
+function Gallery({ name }) {
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
   const data = useStaticQuery(graphql`
     query PhotoQuery {
       allStrapiPhoto {
         nodes {
-          Image {
+          image {
             childImageSharp {
               fluid(quality: 100, maxWidth: 600, maxHeight: 600) {
                 ...GatsbyImageSharpFluid
@@ -78,10 +78,10 @@ function Gallery({name}) {
 
   const photos = data.allStrapiPhoto.nodes.map(photo => {
     let [width, height] = getAspectRatio(
-      photo.Image.childImageSharp.fluid.aspectRatio
+      photo.image.childImageSharp.fluid.aspectRatio
     );
     return {
-      src: photo.Image.childImageSharp.fluid.src,
+      src: photo.image.childImageSharp.fluid.src,
       width: width,
       height: height
     };
@@ -89,9 +89,9 @@ function Gallery({name}) {
 
   const originalPhotos = data.allStrapiPhoto.nodes.map(photo => {
     return {
-      src: photo.Image.childImageSharp.original.src,
-      width: photo.Image.childImageSharp.original.width,
-      height: photo.Image.childImageSharp.original.height
+      src: photo.image.childImageSharp.original.src,
+      width: photo.image.childImageSharp.original.width,
+      height: photo.image.childImageSharp.original.height
     };
   });
 
