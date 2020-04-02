@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useStaticQuery, graphql } from "gatsby";
 import { useMediaQuery } from "react-responsive";
@@ -91,7 +91,7 @@ const AlbumGridItem = styled.div`
   flex-shrink: 0;
 `;
 
-function Discography({name}) {
+function Discography({ name }) {
   const isDesktop = useMediaQuery({ query: breakpoint.small });
   const data = useStaticQuery(graphql`
     query AlbumQuery {
@@ -117,22 +117,15 @@ function Discography({name}) {
   `);
   const albumData = data.allStrapiAlbum.nodes;
   const [currentAlbumSpotlight, setCurrentAlbumSpotlight] = useState(0);
-  const albumSpotlightRef = useRef(0);
 
   const handleMouseEnter = (index, event) => {
     event.preventDefault();
     setCurrentAlbumSpotlight(index);
   };
 
-  const handleMouseLeave = event => {
-    event.preventDefault();
-    setCurrentAlbumSpotlight(albumSpotlightRef.current);
-  };
-
   const handleClick = (index, event) => {
     event.preventDefault();
     setCurrentAlbumSpotlight(index);
-    albumSpotlightRef.current = index;
   };
 
   return (
@@ -171,7 +164,6 @@ function Discography({name}) {
                   <AlbumGridItem
                     key={`Album_${album.id}`}
                     onMouseEnter={event => handleMouseEnter(index, event)}
-                    onMouseLeave={handleMouseLeave}
                     onClick={event => handleClick(index, event)}
                   >
                     <Img

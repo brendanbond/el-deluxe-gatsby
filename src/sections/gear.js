@@ -49,7 +49,6 @@ const GearContainer = styled.div`
 
 const GearIntro = styled.div`
   margin: 30px auto;
-  width: 90%;
 `;
 
 const GearList = styled.div`

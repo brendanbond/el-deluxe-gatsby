@@ -32,7 +32,7 @@ const CenterColumn = styled.div`
 const RightColumn = styled.div`
   width: 33.3%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 `;
 
 const MobileNavButton = styled.button`
@@ -103,7 +103,16 @@ function MobileNav({ cartImage, logoImage }) {
           </MobileNavButton>
         </LeftColumn>
         <CenterColumn>
-          <img src={logoImage} width="100px" alt="Electric Deluxe Logo" />
+          <NavItem
+            activeClass="active"
+            to="about"
+            spy={true}
+            smooth={true}
+            offset={-75}
+            duration={500}
+          >
+            <img src={logoImage} width="100px" alt="Electric Deluxe Logo" />
+          </NavItem>
         </CenterColumn>
         <RightColumn>
           <MobileCartContainer onClick={() => toggleCart()}>

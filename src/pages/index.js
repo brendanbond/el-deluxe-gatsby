@@ -11,8 +11,8 @@ import Contact from "../sections/contact";
 import { ProductsProvider } from "../hooks/useProductsContext";
 import { CartProvider } from "../hooks/useCartContext";
 
-const IndexPage = () => (
-  <Layout>
+const IndexPage = ({ location }) => (
+  <Layout location={location}>
     <SEO title="Home" />
     <ProductsProvider>
       <CartProvider>

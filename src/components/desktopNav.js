@@ -71,7 +71,16 @@ function DesktopNav({ cartImage, logoImage }) {
   return (
     <NavContainer>
       <LeftColumn>
-        <img src={logoImage} width="100px" alt="Electric Deluxe logo"></img>
+        <NavItem
+          activeClass="active"
+          to="about"
+          spy={true}
+          smooth={true}
+          offset={-75}
+          duration={500}
+        >
+          <img src={logoImage} width="100px" alt="Electric Deluxe logo"></img>
+        </NavItem>
       </LeftColumn>
       <RightColumn>
         <DesktopNavItemsContainer>

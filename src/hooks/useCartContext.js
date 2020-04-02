@@ -27,6 +27,12 @@ function useCart() {
     return localCart;
   });
 
+  const clearCart = () => {
+    console.log("Clear cart fired");
+    localStorage.removeItem("el-deluxe-cart");
+    setCartContents([]);
+  };
+
   const getCartQuantity = () => {
     return cartContents.reduce((acc, curr) => acc + curr.quantity, 0);
   };
@@ -46,11 +52,11 @@ function useCart() {
 
   const getCartSalesTax = () => {
     return getCartSubtotal() * 0.0825;
-  }
+  };
 
   const getCartGrandTotal = () => {
     return getCartSubtotal() + getCartSalesTax();
-  }
+  };
 
   useEffect(() => {
     try {
@@ -98,7 +104,8 @@ function useCart() {
     getCartSubtotal,
     getCartSalesTax,
     getCartGrandTotal,
-    toggleCart
+    toggleCart,
+    clearCart
   };
 }
 

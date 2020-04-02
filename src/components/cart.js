@@ -119,6 +119,7 @@ function Cart() {
           subtotal={getCartSubtotal().toFixed(2)}
           salesTax={getCartSalesTax().toFixed(2)}
           grandTotal={getCartGrandTotal().toFixed(2)}
+          disabled={getCartQuantity() <= 0}
         />
       </CartContentContainer>
     </CartContainer>

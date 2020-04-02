@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const CartCheckoutButton = styled.button`
+import Checkout from "./checkout";
+import { useCartContext } from "../hooks/useCartContext";
+
+const CartCheckoutButton = styled(Checkout)`
   height: 33px;
   font-size: 14pt;
   border-radius: 6px;
@@ -26,7 +29,13 @@ const CartCheckoutRow = styled.div`
   justify-content: space-between;
 `;
 
-function CartCheckout({subtotal, salesTax, grandTotal}) {
+function CartCheckout({ subtotal, salesTax, grandTotal, disabled }) {
+  const { cartContents } = useCartContext();
+  const items = cartContents.map(item => ({
+    sku: item.sku,
+    quantity: item.quantity
+  }));
+
   return (
     <CartCheckoutContainer>
       <CartCheckoutRow>
@@ -41,7 +50,9 @@ function CartCheckout({subtotal, salesTax, grandTotal}) {
         <strong>Grand Total:</strong>
         <strong>${grandTotal}</strong>
       </CartCheckoutRow>
-        <CartCheckoutButton>Checkout →</CartCheckoutButton>
+      <CartCheckoutButton disabled={disabled} items={items}>
+        Checkout →
+      </CartCheckoutButton>
     </CartCheckoutContainer>
   );
 }

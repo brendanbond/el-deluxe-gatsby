@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-scroll";
 
-import StickyNav from "../components/stickyNav";
-import Cart from "../components/cart";
+import StickyNav from "./stickyNav";
+import Cart from "./cart";
 import { ProductsProvider } from "../hooks/useProductsContext";
 import { CartProvider } from "../hooks/useCartContext";
 import Logo from "../images/logo.png";
@@ -38,7 +38,12 @@ const OuterLink = styled.a`
   color: white;
 `;
 
+const FooterImage = styled.div`
+  cursor: pointer;
+`;
+
 const Layout = ({ children }) => {
+
   return (
     <ProductsProvider>
       <CartProvider>
@@ -49,18 +54,11 @@ const Layout = ({ children }) => {
           {children}
         </main>
         <Footer>
-          <div>
-            <Link
-              activeClass="active"
-              to="about"
-              spy={true}
-              smooth={true}
-              offset={-75}
-              duration={500}
-            >
+          <FooterImage>
+            <Link to="about" smooth={true} offset={-75} duration={500}>
               <img src={Logo} width="100px" alt="Electric Deluxe Logo" />
             </Link>
-          </div>
+          </FooterImage>
           © {new Date().getFullYear()} Electric Deluxe Recorders. All rights
           reserved.
           <br />
