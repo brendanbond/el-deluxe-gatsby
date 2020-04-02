@@ -8,22 +8,16 @@ import Gear from "../sections/gear";
 import Gallery from "../sections/gallery";
 import Store from "../sections/store";
 import Contact from "../sections/contact";
-import { ProductsProvider } from "../hooks/useProductsContext";
-import { CartProvider } from "../hooks/useCartContext";
 
 const IndexPage = ({ location }) => (
   <Layout location={location}>
     <SEO title="Home" />
-    <ProductsProvider>
-      <CartProvider>
-        <About name="about" />
-        <Discography name="discography" />
-        <Gear name="gear" />
-        <Gallery name="gallery" />
-        <Store name="store" />
-        <Contact name="contact" />
-      </CartProvider>
-    </ProductsProvider>
+    <About name="about" />
+    <Discography name="discography" />
+    <Gear name="gear" />
+    <Gallery name="gallery" />
+    <Store name="store" />
+    <Contact name="contact" />
   </Layout>
 );
 
