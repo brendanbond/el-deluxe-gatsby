@@ -4,16 +4,12 @@ import { useStaticQuery, graphql } from "gatsby";
 import PhotoGallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 
-import galleryBackground from "../images/gallery-background.jpg";
-
 const GallerySection = styled.section`
   width: 100%;
   padding: 40px;
   margin: auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-image: url(${galleryBackground});
-  background-size: cover;
 `;
 
 const GalleryImageContainer = styled.div`

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { breakpoint } from "../utilities/breakpoints";
-import aboutBackgroundMobile from "../images/about-background-mobile.png";
+import aboutBackgroundMobile from "../images/about-background-mobile.jpg";
 import aboutBackgroundDesktop from "../images/about-background-desktop-v3.jpg";
 import facebookSocialIcon from "../images/facebook-social-icon.svg";
 import instagramSocialIcon from "../images/instagram-social-icon.svg";
@@ -106,8 +106,8 @@ function About({ name }) {
       <AboutContainer>
         <AboutHeading>ELECTRIC DELUXE RECORDERS</AboutHeading>
         <AboutSubHeading>
-          is a recording studio and production house in South Austin, Texas owned and operated by
-          award-winning producer
+          is a recording studio and production house in South Austin, Texas
+          owned and operated by award-winning producer
         </AboutSubHeading>
         <AboutHeading>ADRIAN QUESADA.</AboutHeading>
         <AboutParagraph>
