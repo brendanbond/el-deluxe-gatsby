@@ -11,7 +11,7 @@ const CartContainer = styled.div`
   background: black;
   z-index: 1000;
   top: 0;
-  right: ${props => (props.isShown ? "0" : "-100%")};
+  right: ${props => (props.isShown ? "0" : "-115vw")};
   height: 100%;
   overflow-y: auto;
   padding: 12px;

@@ -10,6 +10,10 @@ import { CartProvider } from "../hooks/useCartContext";
 import Logo from "../images/logo.png";
 
 const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     font-family: big-caslon-fb, serif;
     font-weight: 400;

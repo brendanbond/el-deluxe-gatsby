@@ -10,6 +10,9 @@ import instagramSocialIcon from "../images/instagram-social-icon.svg";
 const AboutSection = styled.section`
   height: 650px;
   position: relative;
+  overflow:visible;
+  box-sizing: border-box;
+  padding-top: 15%;
   
   @media ${breakpoint.medium} {
     height: 790px;
@@ -23,10 +26,12 @@ const BackgroundImage = styled.div`
   position: absolute;
   top: -75px;
   width: 100%;
-  height: 865px;
+  height: 725px;
   z-index: -1;
+
   @media ${breakpoint.medium} {
     background-image: url(${aboutBackgroundDesktop});
+    height: 865px;
   }
 `;
 
@@ -44,8 +49,7 @@ const AboutContainer = styled.div`
     align-items: flex-end;
     text-align: right;
     width: 40%;
-    padding: 100px 0 0 50%;
-    margin: 0;
+    margin: 0 0 0 50%;
     font-size: 12pt;
   }
 

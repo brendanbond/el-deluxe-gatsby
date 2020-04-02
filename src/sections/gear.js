@@ -48,7 +48,7 @@ const GearContainer = styled.div`
 `;
 
 const GearIntro = styled.div`
-  margin: 30px 0;
+  margin: 30px auto;
   width: 90%;
 `;
 
