@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
-import PageIndicators from "../components/pageIndicators";
-import MobileDiscographySwiper from "./mobileDiscographySwiper";
+import PageIndicators from "./pageIndicators";
+import DiscographySwiper from "./DiscographySwiper";
 
 function chunkArray(array, chunkSize) {
   let result = [];
@@ -21,7 +21,7 @@ function MobileDiscography({ albumData }) {
         numberPages={paginatedAlbums.length}
         currentPage={currentPage}
       />
-      <MobileDiscographySwiper
+      <DiscographySwiper
         albumData={paginatedAlbums}
         setCurrentPage={setCurrentPage}
       />
