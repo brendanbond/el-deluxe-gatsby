@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import CartItem from "./cartItem";
@@ -14,7 +14,7 @@ const CartContainer = styled.div`
   right: ${props => (props.isShown ? "0" : "-115vw")};
   height: 100%;
   overflow-y: auto;
-  padding: 12px;
+  padding: 15px;
   -webkit-overflow-scrolling: touch;
   transition: right 0.3s;
 `;
