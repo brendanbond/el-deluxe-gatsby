@@ -61,16 +61,7 @@ const MobileDiscographyContainer = styled.div`
 function Discography({ name }) {
   const data = useStaticQuery(graphql`
     query {
-      mobileBackground: file(
-        relativePath: { eq: "discography-mobile-background.jpg" }
-      ) {
-        childImageSharp {
-          fluid(maxWidth: 1500) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-      desktopBackground: file(
+      background: file(
         relativePath: { eq: "discography-desktop-background.jpg" }
       ) {
         childImageSharp {
@@ -100,7 +91,7 @@ function Discography({ name }) {
     }
   `);
 
-  const background = data.desktopBackground.childImageSharp.fluid;
+  const background = data.background.childImageSharp.fluid;
 
   const albumData = data.allStrapiAlbum.nodes;
   const [currentAlbumSpotlight, setCurrentAlbumSpotlight] = useState(0);
