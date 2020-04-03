@@ -37,7 +37,6 @@ const CartItemInfo = styled.span`
 const CartItemRemoveButton = styled.div`
   opacity: 0.4;
   cursor: pointer;
-  padding-left: 15px;
   width: 15px;
   height: 15px;
   &:before,
