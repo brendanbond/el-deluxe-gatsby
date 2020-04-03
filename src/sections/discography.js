@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useStaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
+import Image from "gatsby-image";
+import BackgroundImage from "gatsby-background-image";
 
 import RecordMediaObject from "../components/recordMediaObject";
 import Grid from "../components/grid";
@@ -10,13 +11,11 @@ import { breakpoint } from "../utilities/breakpoints";
 import discographyMobileBackground from "../images/discography-mobile-background.jpg";
 import discographyDesktopBackground from "../images/discography-desktop-background.jpg";
 
-const DiscographySection = styled.section`
-  background-image: url(${discographyMobileBackground});
-  background-size: cover;
+const DiscographySection = styled(BackgroundImage)`
+  position: relative;
   min-height: 600px;
 
   @media ${breakpoint.small} {
-    background-image: url(${discographyDesktopBackground});
     padding-bottom: 50px;
   }
 `;
@@ -63,7 +62,25 @@ const MobileDiscographyContainer = styled.div`
 
 function Discography({ name }) {
   const data = useStaticQuery(graphql`
-    query AlbumQuery {
+    query {
+      mobileBackground: file(
+        relativePath: { eq: "discography-mobile-background.jpg" }
+      ) {
+        childImageSharp {
+          fluid(maxWidth: 1500) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      desktopBackground: file(
+        relativePath: { eq: "discography-desktop-background.jpg" }
+      ) {
+        childImageSharp {
+          fluid(maxWidth: 1500) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
       allStrapiAlbum {
         nodes {
           id
@@ -84,6 +101,9 @@ function Discography({ name }) {
       }
     }
   `);
+
+  const background = data.desktopBackground.childImageSharp.fluid;
+
   const albumData = data.allStrapiAlbum.nodes;
   const [currentAlbumSpotlight, setCurrentAlbumSpotlight] = useState(0);
 
@@ -98,7 +118,16 @@ function Discography({ name }) {
   };
 
   return (
-    <DiscographySection name={name}>
+    <DiscographySection
+      name={name}
+      Tag="section"
+      fluid={background}
+      title="Discography Background"
+      id="discography"
+      role="img"
+      aria-label="Discography Background"
+      preserveStackingContext={true}
+    >
       <DiscographyContainer>
         <AlbumSpotlightContainer>
           <RecordMediaObject
@@ -113,7 +142,7 @@ function Discography({ name }) {
         </AlbumSpotlightContainer>
         <AlbumGrid
           items={albumData.map(album => (
-            <Img fluid={album.image.childImageSharp.fluid} />
+            <Image fluid={album.image.childImageSharp.fluid} />
           ))}
           onClick={handleClick}
           onMouseEnter={handleMouseEnter}
