@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
+import BackgroundImage from "gatsby-background-image";
 
 import StoreForm from "../components/storeForm";
 import { useProductsContext } from "../hooks/useProductsContext";
 import { useCartContext } from "../hooks/useCartContext";
-import storeMobileBackground from "../images/store-mobile-background.jpg";
-import storeDesktopBackground from "../images/store-desktop-background.jpg";
 import { breakpoint } from "../utilities/breakpoints";
 
-const StoreSection = styled.section`
-  background-image: url(${storeMobileBackground});
-  background-size: cover;
+const StoreSection = styled(BackgroundImage)`
   padding: 70px 0 70px 0;
-
   @media ${breakpoint.medium} {
-    background-image: url(${storeDesktopBackground});
-    background-size: cover;
-    background-position: center center;
   }
 `;
 
@@ -100,11 +94,24 @@ const StoreFormContainer = styled.div`
 `;
 
 function Store({ name }) {
+  const data = useStaticQuery(graphql`
+    query StoreQuery {
+      background: file(relativePath: { eq: "store-background.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1400) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  `);
   const { products } = useProductsContext();
   const { addToCart } = useCartContext();
   const [productIndex, setProductIndex] = useState(0);
   const [variantIndex, setVariantIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+
+  const background = data.background.childImageSharp.fluid;
 
   const handleFormInputChange = event => {
     console.log("Form handler fired.");
@@ -139,37 +146,48 @@ function Store({ name }) {
     }
   };
 
-  return products ? (
-    <StoreSection name={name}>
-      <StoreContainer>
-        <ProductImageContainer>
-          <ProductImage fluid={products[productIndex].image} />
-          <ImageIndicatorContainer>
-            <LeftArrow onClick={decrementProduct} />
-            <RightArrow onClick={incrementProduct} />
-          </ImageIndicatorContainer>
-        </ProductImageContainer>
-        <StoreFormContainer>
-          <StoreForm
-            productIndex={productIndex}
-            variantIndex={variantIndex}
-            quantity={quantity}
-            onFormInputChange={handleFormInputChange}
-            onClick={() =>
-              addToCart(
-                products[productIndex].variants[variantIndex].sku,
-                products[productIndex].id,
-                quantity
-              )
-            }
-          />
-        </StoreFormContainer>
-      </StoreContainer>
+  return (
+    <StoreSection
+      name={name}
+      Tag="div"
+      fluid={background}
+      title="Store Background"
+      id="store"
+      role="img"
+      aria-label="Store Background"
+      preserveStackingContext={true}
+    >
+      {products ? (
+        <StoreContainer>
+          <ProductImageContainer>
+            <ProductImage fluid={products[productIndex].image} />
+            <ImageIndicatorContainer>
+              <LeftArrow onClick={decrementProduct} />
+              <RightArrow onClick={incrementProduct} />
+            </ImageIndicatorContainer>
+          </ProductImageContainer>
+          <StoreFormContainer>
+            <StoreForm
+              productIndex={productIndex}
+              variantIndex={variantIndex}
+              quantity={quantity}
+              onFormInputChange={handleFormInputChange}
+              onClick={() =>
+                addToCart(
+                  products[productIndex].variants[variantIndex].sku,
+                  products[productIndex].id,
+                  quantity
+                )
+              }
+            />
+          </StoreFormContainer>
+        </StoreContainer>
+      ) : (
+        <div>
+          <h3>There are currently no products in the store.</h3>
+        </div>
+      )}
     </StoreSection>
-  ) : (
-    <div>
-      <h3>There are currently no products in the store.</h3>
-    </div>
   );
 }
 
