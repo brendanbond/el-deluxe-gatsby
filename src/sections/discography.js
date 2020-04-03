@@ -62,7 +62,7 @@ function Discography({ name }) {
   const data = useStaticQuery(graphql`
     query {
       background: file(
-        relativePath: { eq: "discography-desktop-background.jpg" }
+        relativePath: { eq: "discography-mobile-background.jpg" }
       ) {
         childImageSharp {
           fluid(maxWidth: 1500) {
