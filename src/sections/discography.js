@@ -8,8 +8,6 @@ import RecordMediaObject from "../components/recordMediaObject";
 import Grid from "../components/grid";
 import MobileDiscography from "../components/mobileDiscography";
 import { breakpoint } from "../utilities/breakpoints";
-import discographyMobileBackground from "../images/discography-mobile-background.jpg";
-import discographyDesktopBackground from "../images/discography-desktop-background.jpg";
 
 const DiscographySection = styled(BackgroundImage)`
   position: relative;
