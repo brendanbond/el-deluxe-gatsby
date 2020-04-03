@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import PageIndicators from "./pageIndicators";
-import DiscographySwiper from "./DiscographySwiper";
+import DiscographySwiper from "./discographySwiper";
 
 function chunkArray(array, chunkSize) {
   let result = [];
