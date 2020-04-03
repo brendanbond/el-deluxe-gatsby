@@ -63,7 +63,7 @@ function Gallery({ name }) {
           image {
             childImageSharp {
               fluid(quality: 50, maxWidth: 600, maxHeight: 600) {
-                ...GatsbyImageSharpFluid_withWebP
+                ...GatsbyImageSharpFluid_withWebp
               }
               original {
                 src
