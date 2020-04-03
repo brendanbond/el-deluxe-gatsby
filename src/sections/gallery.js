@@ -62,8 +62,8 @@ function Gallery({ name }) {
         nodes {
           image {
             childImageSharp {
-              fluid(quality: 100, maxWidth: 600, maxHeight: 600) {
-                ...GatsbyImageSharpFluid
+              fluid(quality: 50, maxWidth: 600, maxHeight: 600) {
+                ...GatsbyImageSharpFluid_withWebP
               }
               original {
                 src

@@ -76,7 +76,7 @@ function Discography({ name }) {
           image {
             childImageSharp {
               fluid(maxWidth: 300) {
-                ...GatsbyImageSharpFluid_withWebp_noBase64
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
