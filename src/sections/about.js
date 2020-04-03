@@ -92,13 +92,6 @@ const SocialIcon = styled.img`
   margin: 0 10px;
 `;
 
-/* Recording studio/production house in South Austin, TX, owned and operated by 
-Grammy Award winning producer Adrian Quesada. A creative space where analog meets
-digital - “taking queues from hip-hop and psychedelic genres and parring them with a 
-mix of classic and modern recording techniques, and a live off-the-floor approach” 
-(Tape Op). Electric Deluxe strives to push the envelope of modern music with a timeless 
-aesthetic, delivering tuff sounds and maximum freshness
- */
 function About({ name }) {
   return (
     <AboutSection name={name}>
@@ -119,16 +112,20 @@ function About({ name }) {
           maximum freshness.
         </AboutParagraph>
         <SocialIcons>
-          <SocialIcon
-            src={facebookSocialIcon}
-            width="30px"
-            alt="Facebook social icon"
-          />
-          <SocialIcon
-            src={instagramSocialIcon}
-            width="30px"
-            alt="Instagram social icon"
-          />
+          <a href="https://www.facebook.com/electricdeluxerecorders">
+            <SocialIcon
+              src={facebookSocialIcon}
+              width="30px"
+              alt="Facebook social icon"
+            />
+          </a>
+          <a href="https://www.instagram.com/electricdeluxerecorders">
+            <SocialIcon
+              src={instagramSocialIcon}
+              width="30px"
+              alt="Instagram social icon"
+            />
+          </a>
         </SocialIcons>
       </AboutContainer>
     </AboutSection>
