@@ -63,7 +63,6 @@ const AboutContainer = styled.div`
 const AboutHeading = styled.h1`
   margin: 5px 0;
   font-size: 1.25em;
-  font-family: "have_nothing_to_do_withRg";
 
   @media ${breakpoint.medium} {
     font-size: 1.5em;
