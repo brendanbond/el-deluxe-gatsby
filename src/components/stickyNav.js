@@ -68,7 +68,6 @@ const MobileCartButton = styled(CartButton)`
 
 function StickyNav() {
   const [mobileShow, setMobileShow] = useState(false);
-  const { toggleCart } = useCartContext();
 
   return (
     <NavContainer>

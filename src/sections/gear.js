@@ -102,13 +102,12 @@ function Gear({ name }) {
   const gearData = data.allStrapiGearSection.nodes;
 
   return (
-    <GearSection>
+    <GearSection name={name}>
       <MobileGearBackground
-        name={name}
         Tag="div"
         fluid={mobileBackground}
         title="Gear Section Background"
-        id="gear"
+        id="gear-background"
         role="img"
         preserveStackingContext={true}
         aria-label="Gear Section Background"
@@ -123,7 +122,7 @@ function Gear({ name }) {
         Tag="div"
         fluid={desktopBackground}
         title="Gear Section Background"
-        id="gear"
+        id="gear-desktop-background"
         role="img"
         preserveStackingContext={true}
         aria-label="Gear Section Background"
