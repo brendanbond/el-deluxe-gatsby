@@ -1,7 +1,7 @@
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe("pk_test_jp4SrrZ6wcUPfb08hweCZ7Tx00AvqX2hH6");
+const stripePromise = loadStripe("pk_test_3YC1wULDvJhGMryXNN1JllJJ");
 
 const redirectToCheckout = async (event, items) => {
   event.preventDefault();
