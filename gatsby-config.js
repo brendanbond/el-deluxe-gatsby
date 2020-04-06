@@ -43,7 +43,7 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-source-strapi-v2",
+      resolve: "gatsby-source-strapi",
       options: {
         apiURL: "https://el-deluxe-strapi.herokuapp.com",
         contentTypes: ["album", "photo"],
