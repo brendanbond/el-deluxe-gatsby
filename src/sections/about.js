@@ -64,6 +64,7 @@ const AboutHeading = styled.h1`
   margin: 5px 0;
   font-size: 1.25em;
   font-family: "have_nothing_to_do_withRg";
+  font-style: normal;
 
   @media ${breakpoint.medium} {
     font-size: 1.5em;

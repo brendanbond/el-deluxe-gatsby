@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
-import BackgroundImage from "gatsby-background-image";
 
 import StoreForm from "../components/storeForm";
 import { useProductsContext } from "../hooks/useProductsContext";
 import { useCartContext } from "../hooks/useCartContext";
 import { breakpoint } from "../utilities/breakpoints";
+import mobileBackground from "../images/store-mobile-background.jpg";
+import desktopBackground from "../images/store-desktop-background.jpg";
 
-const StoreSection = styled(BackgroundImage)`
+const StoreSection = styled.section`
   padding: 70px 0 70px 0;
+  background-image: url(${mobileBackground});
+  background-size: cover;
+  background-position: center center;
   @media ${breakpoint.medium} {
+    background-image: url(${desktopBackground});
   }
 `;
 
@@ -94,26 +99,13 @@ const StoreFormContainer = styled.div`
 `;
 
 function Store({ name }) {
-  const data = useStaticQuery(graphql`
-    query StoreQuery {
-      background: file(relativePath: { eq: "store-background.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1400) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-  `);
   const { products } = useProductsContext();
   const { addToCart } = useCartContext();
   const [productIndex, setProductIndex] = useState(0);
   const [variantIndex, setVariantIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
-  const background = data.background.childImageSharp.fluid;
-
-  const handleFormInputChange = event => {
+  const handleFormInputChange = (event) => {
     console.log("Form handler fired.");
     const formInput = event.target.name;
     const value = event.target.value;
@@ -147,16 +139,7 @@ function Store({ name }) {
   };
 
   return (
-    <StoreSection
-      name={name}
-      Tag="div"
-      fluid={background}
-      title="Store Background"
-      id="store"
-      role="img"
-      aria-label="Store Background"
-      preserveStackingContext={true}
-    >
+    <StoreSection name={name}>
       {products ? (
         <StoreContainer>
           <ProductImageContainer>

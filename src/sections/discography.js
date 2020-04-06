@@ -65,7 +65,7 @@ function Discography({ name }) {
         relativePath: { eq: "discography-mobile-background.jpg" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 1500) {
+          fluid(maxWidth: 1500, quality: 100) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
