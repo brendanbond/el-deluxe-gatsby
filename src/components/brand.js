@@ -6,6 +6,7 @@ import Logo from "../images/logo.png";
 const LogoImage = styled.img`
   width: 100px;
   flex-shrink: 0;
+  cursor: pointer;
 `;
 
 function Brand({ className }) {

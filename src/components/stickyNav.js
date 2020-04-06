@@ -68,14 +68,23 @@ const MobileCartButton = styled(CartButton)`
 
 function StickyNav() {
   const [mobileShow, setMobileShow] = useState(false);
-  
+
   return (
     <NavContainer>
       <CollapsibleNavMenuContainer>
         <MobileMenuButton onClick={() => setMobileShow(!mobileShow)} />
         <CollapsibleNavMenu show={mobileShow} />
       </CollapsibleNavMenuContainer>
-      <Brand />
+      <Link
+        activeClass="active"
+        to="about"
+        spy={true}
+        smooth={true}
+        offset={-75}
+        duration={500}
+      >
+        <Brand />
+      </Link>
       <NavLinks>
         <Link
           activeClass="active"

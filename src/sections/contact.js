@@ -3,11 +3,12 @@ import styled from "styled-components";
 
 import ContactForm from "../components/contactForm";
 import { breakpoint } from "../utilities/breakpoints";
-import ContactMobileBackground from "../images/contact-mobile-background.jpg";
-import ContactDesktopBackground from "../images/contact-desktop-background.jpg";
+import MobileBackground from "../images/contact-mobile-background.jpg";
+import DesktopBackground from "../images/contact-desktop-background.jpg";
+
 
 const ContactSection = styled.section`
-  background-image: url(${ContactMobileBackground});
+  background-image: url(${MobileBackground});
   background-size: cover;
   background-position: center center;
   padding: 30px 0;
@@ -28,7 +29,7 @@ const ContactImageContainer = styled.div`
   @media ${breakpoint.medium} {
     display: inherit;
     width: 50%;
-    background-image: url(${ContactDesktopBackground});
+    background-image: url(${DesktopBackground});
     background-size: cover;
   }
 `;
@@ -53,18 +54,19 @@ const ContactFormContainer = styled.div`
 `;
 
 const ContactFormHeading = styled.h1`
+  font-family: "have_nothing_to_do_withRg";
   font-weight: 800;
   font-style: normal;
   text-align: center;
 `;
 
-function Contact({name}) {
+function Contact({ name }) {
   return (
     <ContactSection name={name}>
       <ContactImageContainer />
       <ContactFormContainer>
         <ContactFormHeading>Get In Touch</ContactFormHeading>
-          <ContactForm />
+        <ContactForm />
       </ContactFormContainer>
     </ContactSection>
   );
