@@ -21,6 +21,7 @@ const redirectToCheckout = async (event, items) => {
 };
 
 function Checkout({ className, children, items }) {
+  const 
   return (
     <button
       className={className}
