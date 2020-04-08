@@ -30,11 +30,6 @@ const CartCheckoutRow = styled.div`
 `;
 
 function CartCheckout({ subtotal, salesTax, grandTotal, disabled }) {
-  const { cartContents } = useCartContext();
-  const items = cartContents.map(item => ({
-    sku: item.sku,
-    quantity: item.quantity
-  }));
 
   return (
     <CartCheckoutContainer>
@@ -50,7 +45,7 @@ function CartCheckout({ subtotal, salesTax, grandTotal, disabled }) {
         <strong>Grand Total:</strong>
         <strong>${grandTotal}</strong>
       </CartCheckoutRow>
-      <CartCheckoutButton disabled={disabled} items={items}>
+      <CartCheckoutButton disabled={disabled}>
         Checkout →
       </CartCheckoutButton>
     </CartCheckoutContainer>

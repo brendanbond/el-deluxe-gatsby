@@ -11,7 +11,7 @@ const CartContainer = styled.div`
   background: black;
   z-index: 1000;
   top: 0;
-  right: ${props => (props.isShown ? "0" : "-115vw")};
+  right: ${(props) => (props.isShown ? "0" : "-115vw")};
   height: 100%;
   overflow-y: auto;
   padding: 15px;
@@ -79,24 +79,24 @@ function Cart() {
     removeFromCart,
     cartIsShown,
     toggleCart,
-    getCartSubtotal,
-    getCartSalesTax,
-    getCartGrandTotal,
-    getCartQuantity
+    cartSubtotal,
+    cartSalesTax,
+    cartGrandTotal,
+    cartQuantity,
   } = useCartContext();
 
   return (
     <CartContainer isShown={cartIsShown}>
       <CartHeadingContainer>
         <CartCloseButton onClick={() => toggleCart()} />
-        Your Cart ({getCartQuantity()})
+        Your Cart ({cartQuantity})
       </CartHeadingContainer>
       <CartContentContainer>
         <CartItemsContainer>
           {cartContents.length > 0 ? (
-            cartContents.map(item => {
+            cartContents.map((item) => {
               let currentProduct = products.find(
-                product => item.productId === product.id
+                (product) => item.productId === product.id
               );
               return (
                 <CartItem
@@ -105,13 +105,13 @@ function Cart() {
                   image={currentProduct.image}
                   variant={
                     currentProduct.variants.find(
-                      variant => item.sku === variant.sku
+                      (variant) => item.sku === variant.sku
                     ).name
                   }
                   quantity={item.quantity}
                   price={
                     currentProduct.variants.find(
-                      variant => item.sku === variant.sku
+                      (variant) => item.sku === variant.sku
                     ).price
                   }
                   onClick={() => removeFromCart(item.sku)}
@@ -125,10 +125,10 @@ function Cart() {
           )}
         </CartItemsContainer>
         <CartCheckout
-          subtotal={getCartSubtotal().toFixed(2)}
-          salesTax={getCartSalesTax().toFixed(2)}
-          grandTotal={getCartGrandTotal().toFixed(2)}
-          disabled={getCartQuantity() <= 0}
+          subtotal={cartSubtotal.toFixed(2)}
+          salesTax={cartSalesTax.toFixed(2)}
+          grandTotal={cartGrandTotal.toFixed(2)}
+          disabled={cartQuantity <= 0}
         />
       </CartContentContainer>
     </CartContainer>

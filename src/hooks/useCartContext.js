@@ -16,6 +16,7 @@ function useCartContext() {
 function useCart() {
   const { products } = useProductsContext();
   const [cartIsShown, setCartIsShown] = useState(false);
+
   const [cartContents, setCartContents] = useState(() => {
     let localCart;
     try {
@@ -27,35 +28,24 @@ function useCart() {
     return localCart;
   });
 
-  const clearCart = () => {
-    localStorage.removeItem("el-deluxe-cart");
-    setCartContents([]);
-  };
+  const cartQuantity = cartContents.reduce(
+    (acc, curr) => acc + curr.quantity,
+    0
+  );
 
-  const getCartQuantity = () => {
-    return cartContents.reduce((acc, curr) => acc + curr.quantity, 0);
-  };
+  const cartSubtotal = cartContents.reduce((acc, curr) => {
+    let currentProduct = products.find(
+      (product) => curr.productId === product.id
+    );
+    let currentSku = currentProduct.variants.find(
+      (variant) => curr.sku === variant.sku
+    );
 
-  const getCartSubtotal = () => {
-    return cartContents.reduce((acc, curr) => {
-      let currentProduct = products.find(
-        (product) => curr.productId === product.id
-      );
-      let currentSku = currentProduct.variants.find(
-        (variant) => curr.sku === variant.sku
-      );
+    return acc + currentSku.price * curr.quantity;
+  }, 0);
 
-      return acc + currentSku.price * curr.quantity;
-    }, 0);
-  };
-
-  const getCartSalesTax = () => {
-    return getCartSubtotal() * 0.0825;
-  };
-
-  const getCartGrandTotal = () => {
-    return getCartSubtotal() + getCartSalesTax();
-  };
+  const cartSalesTax = cartSubtotal * 0.0825;
+  const cartGrandTotal = cartSubtotal + cartSalesTax;
 
   useEffect(() => {
     try {
@@ -88,6 +78,11 @@ function useCart() {
     });
   };
 
+  const clearCart = () => {
+    localStorage.removeItem("el-deluxe-cart");
+    setCartContents([]);
+  };
+
   const toggleCart = (forcedState) => {
     setCartIsShown((prevState) => forcedState || !prevState);
   };
@@ -97,10 +92,10 @@ function useCart() {
     addToCart,
     removeFromCart,
     cartIsShown,
-    getCartQuantity,
-    getCartSubtotal,
-    getCartSalesTax,
-    getCartGrandTotal,
+    cartQuantity,
+    cartSubtotal,
+    cartSalesTax,
+    cartGrandTotal,
     toggleCart,
     clearCart,
   };

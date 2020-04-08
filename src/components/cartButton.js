@@ -16,7 +16,7 @@ const CartButtonContainer = styled.div`
 `;
 
 const CartIndicator = styled.div`
-  display: ${props => (props.active ? "block" : "none")};
+  display: ${(props) => (props.active ? "block" : "none")};
   position: absolute;
   top: -3px;
   right: -5px;
@@ -36,13 +36,11 @@ const CartImage = styled.img`
 `;
 
 function CartButton({ className, onClick }) {
-  const { getCartQuantity, toggleCart } = useCartContext();
+  const { cartQuantity, toggleCart } = useCartContext();
 
   return (
     <CartButtonContainer className={className} onClick={() => toggleCart()}>
-      <CartIndicator active={getCartQuantity() > 0}>
-        {getCartQuantity()}
-      </CartIndicator>
+      <CartIndicator active={cartQuantity > 0}>{cartQuantity}</CartIndicator>
       <CartImage src={CartIcon} />
     </CartButtonContainer>
   );
