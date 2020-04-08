@@ -8,8 +8,8 @@ const redirectToCheckout = async (event, items) => {
   const stripe = await stripePromise;
   const { error } = await stripe.redirectToCheckout({
     items: items,
-    successUrl: process.env.URL + `?success=true`,
-    cancelUrl: process.env.URL,
+    successUrl: `http://localhost:8888`,
+    cancelUrl: `http://localhost:8888`,
     billingAddressCollection: "auto",
     shippingAddressCollection: {
       allowedCountries: ["US"],
@@ -20,7 +20,7 @@ const redirectToCheckout = async (event, items) => {
   }
 };
 
-function Checkout({ className, children, items }) { 
+function Checkout({ className, children, items }) {
   return (
     <button
       className={className}

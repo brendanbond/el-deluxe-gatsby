@@ -32,16 +32,8 @@ function CartCheckout({ subtotal, salesTax, grandTotal, disabled, items }) {
   return (
     <CartCheckoutContainer>
       <CartCheckoutRow>
-        <span>Subtotal:</span>
-        <span>${subtotal}</span>
-      </CartCheckoutRow>
-      <CartCheckoutRow>
-        <span>Tax:</span>
-        <span>${salesTax}</span>
-      </CartCheckoutRow>
-      <CartCheckoutRow>
-        <strong>Grand Total:</strong>
-        <strong>${grandTotal}</strong>
+        <span>Total:</span>
+        <span>{subtotal}</span>
       </CartCheckoutRow>
       <CartCheckoutButton disabled={disabled} items={items}>
         Checkout →
