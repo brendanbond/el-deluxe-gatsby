@@ -20,8 +20,7 @@ const redirectToCheckout = async (event, items) => {
   }
 };
 
-function Checkout({ className, children, items }) {
-  const 
+function Checkout({ className, children, items }) { 
   return (
     <button
       className={className}

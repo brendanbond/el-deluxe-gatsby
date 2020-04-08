@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import Checkout from "./checkout";
-import { useCartContext } from "../hooks/useCartContext";
 
 const CartCheckoutButton = styled(Checkout)`
   height: 33px;
