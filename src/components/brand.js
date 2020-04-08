@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Logo from "../images/logo.png";
 
 const LogoImage = styled.img`
-  width: 100px;
+  width: 75px;
   flex-shrink: 0;
   cursor: pointer;
 `;

@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import { breakpoint } from "../utilities/breakpoints";
-import aboutBackgroundMobile from "../images/about-background-mobile.jpg";
-import aboutBackgroundDesktop from "../images/about-background-desktop-v3.jpg";
+import aboutBackgroundMobile from "../images/about-mobile-background.jpg";
+import aboutBackgroundDesktop from "../images/about-desktop-background.jpg";
 import facebookSocialIcon from "../images/facebook-social-icon.svg";
 import instagramSocialIcon from "../images/instagram-social-icon.svg";
 
@@ -110,8 +110,8 @@ function About({ name }) {
           hip-hop and psychedelic genres and pairing them with a mix of classic
           and modern recording techniques and a live off-the-floor approach”
           (Tape Op). Electric Deluxe strives to push the envelope of modern
-          music with by delivering a timeless aesthetic, tuff sounds, and
-          maximum freshness.
+          music by delivering a timeless aesthetic, tuff sounds, and maximum
+          freshness.
         </AboutParagraph>
         <SocialIcons>
           <a href="https://www.facebook.com/electricdeluxerecorders">
