@@ -8,8 +8,8 @@ const redirectToCheckout = async (event, items) => {
   const stripe = await stripePromise;
   const { error } = await stripe.redirectToCheckout({
     items: items,
-    successUrl: `http://localhost:8000/?success=true`,
-    cancelUrl: `http://localhost:8000/?success=false`,
+    successUrl: process.env.NETLIFY ? process.env.URL + `?success=true` : `http://localhost:8000/?success=true`,
+    cancelUrl: process.env.NETLIFY ? process.env.URL : `http://localhost:8000/`,
     billingAddressCollection: "auto",
     shippingAddressCollection: {
       allowedCountries: ["US"],
