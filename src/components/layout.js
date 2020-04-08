@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-scroll";
@@ -42,8 +42,7 @@ const FooterImage = styled.div`
   cursor: pointer;
 `;
 
-const Layout = ({ children }) => {
-
+const Layout = ({ children, location }) => {
   return (
     <ProductsProvider>
       <CartProvider>
@@ -73,7 +72,7 @@ const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

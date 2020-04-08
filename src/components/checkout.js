@@ -1,7 +1,7 @@
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe("pk_test_3YC1wULDvJhGMryXNN1JllJJ");
+const stripePromise = loadStripe("pk_test_jp4SrrZ6wcUPfb08hweCZ7Tx00AvqX2hH6");
 
 const redirectToCheckout = async (event, items) => {
   event.preventDefault();
@@ -12,8 +12,8 @@ const redirectToCheckout = async (event, items) => {
     cancelUrl: `http://localhost:8000/?success=false`,
     billingAddressCollection: "auto",
     shippingAddressCollection: {
-      allowedCountries: ["US"]
-    }
+      allowedCountries: ["US"],
+    },
   });
   if (error) {
     console.warn("Error:", error);
@@ -24,7 +24,9 @@ function Checkout({ className, children, items }) {
   return (
     <button
       className={className}
-      onClick={event => redirectToCheckout(event, items)}
+      onClick={(event) => {
+        redirectToCheckout(event, items);
+      }}
     >
       {children}
     </button>

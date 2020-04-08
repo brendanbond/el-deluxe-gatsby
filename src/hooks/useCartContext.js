@@ -6,7 +6,6 @@ const cartContext = createContext();
 
 function CartProvider({ children }) {
   const cart = useCart();
-  console.log(cart);
   return <cartContext.Provider value={cart}>{children}</cartContext.Provider>;
 }
 
@@ -29,7 +28,6 @@ function useCart() {
   });
 
   const clearCart = () => {
-    console.log("Clear cart fired");
     localStorage.removeItem("el-deluxe-cart");
     setCartContents([]);
   };
@@ -41,10 +39,10 @@ function useCart() {
   const getCartSubtotal = () => {
     return cartContents.reduce((acc, curr) => {
       let currentProduct = products.find(
-        product => curr.productId === product.id
+        (product) => curr.productId === product.id
       );
       let currentSku = currentProduct.variants.find(
-        variant => curr.sku === variant.sku
+        (variant) => curr.sku === variant.sku
       );
 
       return acc + currentSku.price * curr.quantity;
@@ -68,32 +66,30 @@ function useCart() {
   }, [cartContents]);
 
   const addToCart = (sku, productId, quantity = 1) => {
-    setCartContents(prevState => {
+    setCartContents((prevState) => {
       let newState = [...prevState];
-      const currIndex = newState.findIndex(obj => obj.sku === sku);
+      const currIndex = newState.findIndex((obj) => obj.sku === sku);
       if (currIndex !== -1) {
         newState[currIndex] = {
           ...prevState[currIndex],
-          quantity: prevState[currIndex].quantity + quantity
+          quantity: prevState[currIndex].quantity + quantity,
         };
       } else {
         newState.push({ sku, productId, quantity });
       }
-      console.log("Cart has new state:", newState);
       return newState;
     });
   };
 
-  const removeFromCart = sku => {
-    setCartContents(prevState => {
-      const newState = prevState.filter(obj => obj.sku !== sku);
+  const removeFromCart = (sku) => {
+    setCartContents((prevState) => {
+      const newState = prevState.filter((obj) => obj.sku !== sku);
       return newState;
     });
   };
 
-  const toggleCart = forcedState => {
-    console.log("toggleCart fired");
-    setCartIsShown(prevState => forcedState || !prevState);
+  const toggleCart = (forcedState) => {
+    setCartIsShown((prevState) => forcedState || !prevState);
   };
 
   return {
@@ -106,7 +102,7 @@ function useCart() {
     getCartSalesTax,
     getCartGrandTotal,
     toggleCart,
-    clearCart
+    clearCart,
   };
 }
 
