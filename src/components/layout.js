@@ -50,7 +50,6 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <main>
         <StickyNav />
-        <OrderNotification isShown={showOrderNotification} />
         <Cart />
         {children}
       </main>

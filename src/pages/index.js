@@ -9,6 +9,7 @@ import Gear from "../sections/gear";
 import Gallery from "../sections/gallery";
 import Store from "../sections/store";
 import Contact from "../sections/contact";
+import OrderNotification from "../components/orderNotification";
 import { useCartContext } from "../hooks/useCartContext";
 
 const IndexPage = ({ location }) => {
@@ -29,7 +30,7 @@ const IndexPage = ({ location }) => {
   return (
     <Layout>
       <SEO title="Home" />
-
+      <OrderNotification isShown={showOrderNotification} />
       <About name="about" />
       <Discography name="discography" />
       <Gear name="gear" />
