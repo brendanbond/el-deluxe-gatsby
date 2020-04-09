@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import queryString from "query-string";
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-scroll";
 
 import StickyNav from "./stickyNav";
 import Cart from "./cart";
-import { ProductsProvider } from "../hooks/useProductsContext";
-import { CartProvider } from "../hooks/useCartContext";
+import OrderNotification from "./orderNotification";
 import Logo from "../images/logo.png";
+import { useCartContext } from "../hooks/useCartContext";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -43,31 +44,44 @@ const FooterImage = styled.div`
 `;
 
 const Layout = ({ children, location }) => {
+  const [showOrderNotification, setShowOrderNotification] = useState(
+    queryString.parse(location.search).success
+  );
+  const { clearCart } = useCartContext();
+
+  useEffect(() => {
+    if (showOrderNotification) {
+      clearCart();
+      setTimeout(() => {
+        setShowOrderNotification(false);
+      }, 2000);
+    }
+  }, [showOrderNotification, clearCart]);
+
   return (
-    <ProductsProvider>
-      <CartProvider>
-        <GlobalStyle />
-        <main>
-          <StickyNav />
-          <Cart />
-          {children}
-        </main>
-        <Footer>
-          <FooterImage>
-            <Link to="about" smooth={true} offset={-75} duration={500}>
-              <img src={Logo} width="100px" alt="Electric Deluxe Logo" />
-            </Link>
-          </FooterImage>
-          © {new Date().getFullYear()} Electric Deluxe Recorders. All rights
-          reserved.
-          <br />
-          All photos by Cristian Sigler.
-          <br />
-          Site by{" "}
-          <OuterLink href="http://brendanbond.dev">Brendan Bond</OuterLink>.
-        </Footer>
-      </CartProvider>
-    </ProductsProvider>
+    <>
+      <GlobalStyle />
+      <main>
+        <StickyNav />
+        <OrderNotification isShown={showOrderNotification} />
+        <Cart />
+        {children}
+      </main>
+      <Footer>
+        <FooterImage>
+          <Link to="about" smooth={true} offset={-75} duration={500}>
+            <img src={Logo} width="100px" alt="Electric Deluxe Logo" />
+          </Link>
+        </FooterImage>
+        © {new Date().getFullYear()} Electric Deluxe Recorders. All rights
+        reserved.
+        <br />
+        All photos by Cristian Sigler.
+        <br />
+        Site by{" "}
+        <OuterLink href="http://brendanbond.dev">Brendan Bond</OuterLink>.
+      </Footer>
+    </>
   );
 };
 

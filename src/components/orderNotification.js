@@ -14,28 +14,13 @@ const OrderSuccessNotification = styled.div`
   z-index: 100;
 `;
 
-const OrderFailureNotification = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff3cd;
-  width: 100%;
-  height: 75px;
-  border-radius: 10px;
-  color: #721c24;
-  text-align: center;
-  z-index: 100;
-`;
-
-function OrderNotification({ isSuccess }) {
-  return isSuccess ? (
+function OrderNotification({ isShown }) {
+  return isShown ? (
     <OrderSuccessNotification>
       Thank you for your order!
     </OrderSuccessNotification>
   ) : (
-    <OrderFailureNotification>
-      Either you canceled or something went wrong - try again later!
-    </OrderFailureNotification>
+    null
   );
 }
 

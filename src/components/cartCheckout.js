@@ -28,14 +28,14 @@ const CartCheckoutRow = styled.div`
   justify-content: space-between;
 `;
 
-function CartCheckout({ subtotal, salesTax, grandTotal, disabled, items }) {
+function CartCheckout({ subtotal, disabled }) {
   return (
     <CartCheckoutContainer>
       <CartCheckoutRow>
         <span>Total:</span>
         <span>{subtotal}</span>
       </CartCheckoutRow>
-      <CartCheckoutButton disabled={disabled} items={items}>
+      <CartCheckoutButton disabled={disabled}>
         Checkout →
       </CartCheckoutButton>
     </CartCheckoutContainer>

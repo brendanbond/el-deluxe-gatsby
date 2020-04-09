@@ -101,4 +101,4 @@ function useCart() {
   };
 }
 
-export { CartProvider, useCartContext, cartContext };
+export { CartProvider, useCartContext };

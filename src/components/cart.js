@@ -129,10 +129,6 @@ function Cart() {
           salesTax={cartSalesTax.toFixed(2)}
           grandTotal={cartGrandTotal.toFixed(2)}
           disabled={cartQuantity <= 0}
-          items={cartContents.map((item) => ({
-            sku: item.sku,
-            quantity: item.quantity,
-          }))}
         />
       </CartContentContainer>
     </CartContainer>
