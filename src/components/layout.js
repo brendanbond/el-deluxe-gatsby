@@ -42,7 +42,6 @@ const FooterImage = styled.div`
 `;
 
 const Layout = ({ children }) => {
-
   return (
     <>
       <GlobalStyle />
@@ -60,7 +59,10 @@ const Layout = ({ children }) => {
         &copy; {new Date().getFullYear()} Electric Deluxe Recorders. All rights
         reserved.
         <br />
-        All photos by Cristian Sigler.
+        All photos by{" "}
+        <OuterLink href="https://www.instagram.com/cristian.sigler/">
+          Cristian Sigler.
+        </OuterLink>
         <br />
         Site by{" "}
         <OuterLink href="http://brendanbond.dev">Brendan Bond</OuterLink>.
