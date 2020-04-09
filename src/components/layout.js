@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import queryString from "query-string";
+
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-scroll";
 
 import StickyNav from "./stickyNav";
 import Cart from "./cart";
-import OrderNotification from "./orderNotification";
 import Logo from "../images/logo.png";
-import { useCartContext } from "../hooks/useCartContext";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -59,7 +57,7 @@ const Layout = ({ children }) => {
             <img src={Logo} width="100px" alt="Electric Deluxe Logo" />
           </Link>
         </FooterImage>
-        © {new Date().getFullYear()} Electric Deluxe Recorders. All rights
+        &copy; {new Date().getFullYear()} Electric Deluxe Recorders. All rights
         reserved.
         <br />
         All photos by Cristian Sigler.

@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 import { useCartContext } from "../hooks/useCartContext";
 
-const stripePromise = loadStripe("pk_test_jp4SrrZ6wcUPfb08hweCZ7Tx00AvqX2hH6");
+const stripePromise = loadStripe("pk_live_Wyt1kEsGhB23sz1rmsMBim8V00DkLoz8LI");
 
 const redirectToCheckout = async (event, items) => {
   event.preventDefault();
