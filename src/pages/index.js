@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import queryString from "query-string";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -8,17 +9,35 @@ import Gear from "../sections/gear";
 import Gallery from "../sections/gallery";
 import Store from "../sections/store";
 import Contact from "../sections/contact";
+import { useCartContext } from "../hooks/useCartContext";
 
-const IndexPage = ({ location }) => (
-  <Layout location={location}>
-    <SEO title="Home" />
-    <About name="about" />
-    <Discography name="discography" />
-    <Gear name="gear" />
-    <Gallery name="gallery" />
-    <Store name="store" />
-    <Contact name="contact" />
-  </Layout>
-);
+const IndexPage = ({ location }) => {
+  const [showOrderNotification, setShowOrderNotification] = useState(
+    queryString.parse(location.search).success
+  );
+  const { clearCart } = useCartContext();
+
+  useEffect(() => {
+    if (showOrderNotification) {
+      clearCart();
+      setTimeout(() => {
+        setShowOrderNotification(false);
+      }, 2000);
+    }
+  }, [showOrderNotification, clearCart]);
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+
+      <About name="about" />
+      <Discography name="discography" />
+      <Gear name="gear" />
+      <Gallery name="gallery" />
+      <Store name="store" />
+      <Contact name="contact" />
+    </Layout>
+  );
+};
 
 export default IndexPage;

@@ -5,3 +5,13 @@
  */
 
 // You can delete this file if you're not using it
+
+import React from "react";
+import { ProductsProvider } from "./src/hooks/useProductsContext";
+import { CartProvider } from "./src/hooks/useCartContext";
+
+export const wrapRootElement = ({ element }) => (
+  <ProductsProvider>
+    <CartProvider>{element}</CartProvider>
+  </ProductsProvider>
+);

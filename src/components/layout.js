@@ -43,20 +43,7 @@ const FooterImage = styled.div`
   cursor: pointer;
 `;
 
-const Layout = ({ children, location }) => {
-  const [showOrderNotification, setShowOrderNotification] = useState(
-    queryString.parse(location.search).success
-  );
-  const { clearCart } = useCartContext();
-
-  useEffect(() => {
-    if (showOrderNotification) {
-      clearCart();
-      setTimeout(() => {
-        setShowOrderNotification(false);
-      }, 2000);
-    }
-  }, [showOrderNotification, clearCart]);
+const Layout = ({ children }) => {
 
   return (
     <>
