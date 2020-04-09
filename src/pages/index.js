@@ -10,11 +10,15 @@ import Gallery from "../sections/gallery";
 import Store from "../sections/store";
 import Contact from "../sections/contact";
 import OrderNotification from "../components/orderNotification";
+import FormNotification from "../components/formNotification";
 import { useCartContext } from "../hooks/useCartContext";
 
 const IndexPage = ({ location }) => {
   const [showOrderNotification, setShowOrderNotification] = useState(
     queryString.parse(location.search).success
+  );
+  const [showFormNotification, setShowFormNotification] = useState(
+    queryString.parse(location.search).contact
   );
   const { clearCart } = useCartContext();
 
@@ -25,12 +29,20 @@ const IndexPage = ({ location }) => {
         setShowOrderNotification(false);
       }, 2000);
     }
-  }, [showOrderNotification, clearCart]);
+
+    if (showFormNotification) {
+      clearCart();
+      setTimeout(() => {
+        setShowFormNotification(false);
+      }, 2000);
+    }
+  }, [showOrderNotification, showFormNotification, clearCart]);
 
   return (
     <Layout>
       <SEO title="Home" />
       <OrderNotification isShown={showOrderNotification} />
+      <FormNotification isShown={showFormNotification} />
       <About name="about" />
       <Discography name="discography" />
       <Gear name="gear" />
