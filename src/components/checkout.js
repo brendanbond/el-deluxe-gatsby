@@ -10,8 +10,8 @@ const redirectToCheckout = async (event, items) => {
   const stripe = await stripePromise;
   const { error } = await stripe.redirectToCheckout({
     items: items,
-    successUrl: `http://localhost:8000/?success=true`,
-    cancelUrl: `http://localhost:8000`,
+    successUrl: `https://www.electricdeluxerecorders.com/?success=true`,
+    cancelUrl: `https://www.electricdeluxerecorders.com`,
     billingAddressCollection: "auto",
     shippingAddressCollection: {
       allowedCountries: ["US"],
