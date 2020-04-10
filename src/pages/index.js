@@ -40,7 +40,7 @@ const IndexPage = ({ location }) => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO />
       <OrderNotification isShown={showOrderNotification} />
       <FormNotification isShown={showFormNotification} />
       <About name="about" />

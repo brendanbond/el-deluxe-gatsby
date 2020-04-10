@@ -32,8 +32,7 @@ function SEO({ description, lang, meta, title }) {
       htmlAttributes={{
         lang
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={title || site.siteMetadata.title}
       meta={[
         {
           name: `description`,
@@ -78,10 +77,6 @@ function SEO({ description, lang, meta, title }) {
           rel: "stylesheet",
           href: "https://use.typekit.net/xwq8qoz.css"
         }
-        // {
-        //   rel: "stylesheet",
-        //   href: { Fonts }
-        // }
       ]}
     />
   );

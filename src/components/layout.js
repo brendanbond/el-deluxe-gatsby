@@ -65,14 +65,16 @@ const Layout = ({ children }) => {
         </OuterLink>
         <br />
         Site by{" "}
-        <OuterLink href="http://brendanbond.dev">Brendan Bond</OuterLink>.
+        <OuterLink href="https://www.instagram.com/bbbondd/">
+          Brendan Bond.
+        </OuterLink>
       </Footer>
     </>
   );
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default Layout;
