@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { breakpoint } from "../utilities/breakpoints";
-import aboutBackgroundMobile from "../images/about-mobile-background.jpg";
+// import aboutBackgroundMobile from "../images/about-mobile-background.jpg";
 import aboutBackgroundDesktop from "../images/about-desktop-background.jpg";
 import facebookSocialIcon from "../images/facebook-social-icon.svg";
 import instagramSocialIcon from "../images/instagram-social-icon.svg";
@@ -21,9 +21,9 @@ const AboutSection = styled.section`
 `;
 
 const BackgroundImage = styled.div`
-  background-image: url(${aboutBackgroundMobile});
+  background-image: url(${aboutBackgroundDesktop});
   background-size: cover;
-  background-position: center center;
+  background-position: -275px;
   position: absolute;
   top: -75px;
   width: 100%;
@@ -31,7 +31,6 @@ const BackgroundImage = styled.div`
   z-index: -1;
 
   @media ${breakpoint.medium} {
-    background-image: url(${aboutBackgroundDesktop});
     background-position: top left;
     height: 865px;
   }
