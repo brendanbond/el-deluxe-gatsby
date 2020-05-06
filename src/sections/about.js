@@ -101,7 +101,7 @@ function About({ name }) {
         <AboutHeading>ELECTRIC DELUXE RECORDERS</AboutHeading>
         <AboutSubHeading>
           is a recording studio and production house in South Austin, Texas
-          owned and operated by award-winning producer
+          owned and operated by Grammy Award-winning producer
         </AboutSubHeading>
         <AboutHeading>ADRIAN QUESADA.</AboutHeading>
         <AboutParagraph>
