@@ -46,7 +46,7 @@ const IndexPage = ({ location }) => {
       <About name="about" />
       <Discography name="discography" />
       <Gear name="gear" />
-      <Gallery name="gallery" />
+      {/* <Gallery name="gallery" /> */}
       <Store name="store" />
       <Contact name="contact" />
     </Layout>

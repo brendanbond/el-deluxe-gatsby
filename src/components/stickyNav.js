@@ -116,7 +116,7 @@ function StickyNav() {
         >
           Gear
         </Link>
-        <Link
+        {/* <Link
           activeClass="active"
           to="gallery"
           spy={true}
@@ -125,7 +125,7 @@ function StickyNav() {
           duration={500}
         >
           The Studio
-        </Link>
+        </Link> */}
         <Link
           activeClass="active"
           to="store"
