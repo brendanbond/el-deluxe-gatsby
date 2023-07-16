@@ -63,7 +63,7 @@ const Layout = ({ children }) => {
         </OuterLink>
         <br />
         Site by{" "}
-        <OuterLink href="https://www.instagram.com/bbbondd/">
+        <OuterLink href="https://www.instagram.com/brendanjbond/">
           Brendan Bond.
         </OuterLink>
       </Footer>
