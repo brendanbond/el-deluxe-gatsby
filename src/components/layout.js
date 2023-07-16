@@ -5,7 +5,6 @@ import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-scroll";
 
 import StickyNav from "./stickyNav";
-import Cart from "./cart";
 import Logo from "../images/logo.png";
 
 const GlobalStyle = createGlobalStyle`
@@ -47,7 +46,6 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <main>
         <StickyNav />
-        <Cart />
         {children}
       </main>
       <Footer>
@@ -65,7 +63,7 @@ const Layout = ({ children }) => {
         </OuterLink>
         <br />
         Site by{" "}
-        <OuterLink href="https://www.instagram.com/bbbondd/">
+        <OuterLink href="https://www.instagram.com/brendanjbond/">
           Brendan Bond.
         </OuterLink>
       </Footer>

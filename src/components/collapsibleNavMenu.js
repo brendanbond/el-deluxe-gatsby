@@ -71,7 +71,7 @@ function CollapsibleNavMenu({ show }) {
             Gear
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             activeClass="active"
             to="gallery"
@@ -82,18 +82,14 @@ function CollapsibleNavMenu({ show }) {
           >
             The Studio
           </Link>
-        </li>
+        </li> */}
         <li>
-          <Link
-            activeClass="active"
-            to="store"
-            spy={true}
-            smooth={true}
-            offset={-75}
-            duration={500}
+          <a
+            href="https://www.hellomerch.com/collections/adrian-quesada"
+            target="_blank" rel="noreferrer"
           >
             Merch
-          </Link>
+          </a>
         </li>
         <li>
           <Link

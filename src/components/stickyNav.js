@@ -4,10 +4,8 @@ import { Link } from "react-scroll";
 
 import Brand from "./brand";
 import MobileNavButton from "./mobileNavButton";
-import CartButton from "./cartButton";
 import CollapsibleNavMenu from "./collapsibleNavMenu";
 import { breakpoint } from "../utilities/breakpoints";
-import { useCartContext } from "../hooks/useCartContext";
 
 const NavContainer = styled.nav`
   display: flex;
@@ -36,6 +34,7 @@ const NavLinks = styled.div`
       transition: all 300ms ease-out 0s;
       text-decoration: none;
       cursor: pointer;
+      color: #ffffff;
 
       &:hover {
         opacity: 1;
@@ -54,13 +53,6 @@ const CollapsibleNavMenuContainer = styled.div`
 const MobileMenuButton = styled(MobileNavButton)`
   display: block;
 
-  @media ${breakpoint.medium} {
-    display: none;
-  }
-`;
-
-const MobileCartButton = styled(CartButton)`
-  opacity: 1;
   @media ${breakpoint.medium} {
     display: none;
   }
@@ -126,16 +118,13 @@ function StickyNav() {
         >
           The Studio
         </Link> */}
-        <Link
-          activeClass="active"
-          to="store"
-          spy={true}
-          smooth={true}
-          offset={-75}
-          duration={500}
+        <a
+          href="https://www.hellomerch.com/collections/adrian-quesada"
+          target="_blank"
+          rel="noreferrer"
         >
           Merch
-        </Link>
+        </a>
         <Link
           activeClass="active"
           to="contact"
@@ -146,9 +135,7 @@ function StickyNav() {
         >
           Get In Touch
         </Link>
-        <CartButton />
       </NavLinks>
-      <MobileCartButton />
     </NavContainer>
   );
 }
